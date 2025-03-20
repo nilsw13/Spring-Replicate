@@ -1,6 +1,8 @@
-package com.nilsw13.spring_replicate.service.actions;
+package com.nilsw13.spring_replicate.service.Replicate;
 
-import com.nilsw13.spring_replicate.Replicate;
+import com.nilsw13.spring_replicate.service.Account.AccountService;
+import com.nilsw13.spring_replicate.service.SecretWebhook.SecretSigningWebhookService;
+import com.nilsw13.spring_replicate.service.prediction.PredictionService;
 
 public class ReplicateService implements Replicate {
 

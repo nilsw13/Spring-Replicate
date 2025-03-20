@@ -1,4 +1,4 @@
-package com.nilsw13.spring_replicate.model;
+package com.nilsw13.spring_replicate.model.Prediction;
 
 import java.util.List;
 

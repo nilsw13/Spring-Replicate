@@ -2,7 +2,7 @@ package com.nilsw13.spring_replicate.impl;
 
 import com.nilsw13.spring_replicate.api.ReplicateRestClient;
 import com.nilsw13.spring_replicate.model.AccountResponse;
-import com.nilsw13.spring_replicate.service.actions.AccountService;
+import com.nilsw13.spring_replicate.service.Account.AccountService;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -18,7 +18,7 @@ public class AccountServiceImpl implements AccountService {
 
 
     @Override
-    public Mono<AccountResponse> getAccountDetails() {
+    public AccountResponse get() {
         return restClient.get("account", AccountResponse.class);
     }
 
