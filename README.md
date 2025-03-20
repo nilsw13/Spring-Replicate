@@ -1,7 +1,7 @@
 # Spring Boot Replicate Client 🚧
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Build Status](https://github.com/yourusername/spring-replicate/actions/workflows/build.yml/badge.svg)](https://github.com/yourusername/spring-replicate/actions)
+[![Build Status](https://github.com/yourusername/spring-replicate/actions/workflows/build.yml/badge.svg)](https://github.com/nilsw13/spring-replicate/actions)
 [![Code Coverage](https://codecov.io/gh/yourusername/spring-replicate/branch/main/graph/badge.svg)](https://codecov.io/gh/yourusername/spring-replicate)
 
 **🚧 Work in Progress 🚧**  
