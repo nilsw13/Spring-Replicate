@@ -18,6 +18,10 @@ public class AccountResponse {
         this.type = type;
     }
 
+    public AccountResponse() {
+
+    }
+
     public String getType() {
         return type;
     }

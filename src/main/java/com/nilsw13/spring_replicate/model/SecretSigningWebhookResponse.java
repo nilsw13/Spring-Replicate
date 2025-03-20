@@ -8,6 +8,9 @@ public class SecretSigningWebhookResponse {
         this.key = key;
     }
 
+    public SecretSigningWebhookResponse() {
+    }
+
     public String getKey() {
         return key;
     }
