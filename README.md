@@ -2,7 +2,6 @@
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-[![Code Coverage](https://codecov.io/gh/nilsw13/Spring-Replicate/branch/master/graph/badge.svg)](https://codecov.io/gh/nilsw13/Spring-Replicate)
 
 **🚧 Work in Progress 🚧**  
 A Spring Boot client for interacting with the [Replicate API](https://replicate.com/). Inspired by the [Laravel Replicate PHP Client](https://github.com/halilcosdu/laravel-replicate), this library is currently under development and will soon provide a convenient way to manage and interact with Replicate services in Java.
