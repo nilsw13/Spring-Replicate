@@ -1,10 +1,9 @@
 package com.nilsw13.spring_replicate.impl;
 
 import com.nilsw13.spring_replicate.api.ReplicateRestClient;
-import com.nilsw13.spring_replicate.model.SecretSigningWebhookResponse;
+import com.nilsw13.spring_replicate.ResponseType.webhook.SecretSigningWebhookResponse;
 import com.nilsw13.spring_replicate.service.SecretWebhook.SecretSigningWebhookService;
 import org.springframework.stereotype.Service;
-import reactor.core.publisher.Mono;
 
 @Service
 public class SecretSigningWebhookServiceImpl implements SecretSigningWebhookService {

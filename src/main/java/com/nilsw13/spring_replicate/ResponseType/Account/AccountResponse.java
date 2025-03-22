@@ -1,4 +1,4 @@
-package com.nilsw13.spring_replicate.model;
+package com.nilsw13.spring_replicate.ResponseType.Account;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

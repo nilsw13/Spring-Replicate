@@ -1,7 +1,6 @@
 package com.nilsw13.spring_replicate.service.Account;
 
-import com.nilsw13.spring_replicate.model.AccountResponse;
-import reactor.core.publisher.Mono;
+import com.nilsw13.spring_replicate.ResponseType.Account.AccountResponse;
 
 public interface AccountService {
 

@@ -1,22 +1,11 @@
 package com.nilsw13.spring_replicate.api;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import com.nilsw13.spring_replicate.config.ReplicateProperties;
 import com.nilsw13.spring_replicate.exception.ReplicateApiException;
-import com.nilsw13.spring_replicate.model.Prediction.PredictionsListResponse;
-import org.apache.coyote.Response;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
-import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.filter.reactive.ServerWebExchangeContextFilter;
-import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.reactive.function.client.WebClientResponseException;
 import org.springframework.web.util.UriComponentsBuilder;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 import java.util.Map;
 
@@ -85,6 +74,61 @@ public class ReplicateRestClient {
         }
     }
 
+    // post method with headers
+    public <T> T post(String endpoint, Object body,  Map<String, String> headers,  Class<T> responseType){
+        String url = buildUrl(endpoint);
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        if (headers != null) {
+            headers.forEach(httpHeaders::add);
+        }
+
+        if (defaultHeaders != null) {
+            httpHeaders.putAll(defaultHeaders);
+        }
+
+
+        try {
+            HttpEntity<?> entity = new HttpEntity<>(body != null ? body : new Object(), httpHeaders);
+            ResponseEntity<T> response = restTemplate.exchange(
+                    url,
+                    HttpMethod.POST,
+                    entity,
+                    responseType
+            );
+            return response.getBody();
+        } catch (HttpStatusCodeException e){
+            throw  new ReplicateApiException(
+                    "Error while post method on Replicate API :" + endpoint,
+                    e,
+                    e.getStatusCode().value(),
+                    e.getResponseBodyAsString()
+            );
+        }
+    }
+
+    // post request without requestBody for delete methods
+    public <T> T post(String endpoint, Class<T> responseType){
+        String url = buildUrl(endpoint);
+
+        try {
+            HttpEntity<?> entity = new HttpEntity<>(defaultHeaders);
+            ResponseEntity<T> response = restTemplate.exchange(
+                    url,
+                    HttpMethod.POST,
+                    entity,
+                    responseType
+            );
+            return response.getBody();
+        } catch (HttpStatusCodeException e) {
+            throw  new ReplicateApiException(
+                    "Error while post method on Replicate API :" + endpoint,
+                    e,
+                    e.getStatusCode().value(),
+                    e.getResponseBodyAsString()
+            );
+        }
+    }
 
 
 

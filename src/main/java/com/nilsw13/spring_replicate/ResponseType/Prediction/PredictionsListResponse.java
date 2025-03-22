@@ -1,4 +1,4 @@
-package com.nilsw13.spring_replicate.model.Prediction;
+package com.nilsw13.spring_replicate.ResponseType.Prediction;
 
 import java.util.List;
 

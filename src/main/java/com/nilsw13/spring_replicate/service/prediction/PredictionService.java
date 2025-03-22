@@ -1,12 +1,7 @@
 package com.nilsw13.spring_replicate.service.prediction;
 
-import com.nilsw13.spring_replicate.model.Prediction.Prediction;
-import com.nilsw13.spring_replicate.model.Prediction.PredictionResponse;
-import com.nilsw13.spring_replicate.model.Prediction.PredictionsListResponse;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
-
-import java.util.List;
+import com.nilsw13.spring_replicate.ResponseType.Prediction.PredictionResponse;
+import com.nilsw13.spring_replicate.ResponseType.Prediction.PredictionsListResponse;
 
 public interface PredictionService {
 
@@ -24,5 +19,5 @@ public interface PredictionService {
 
     // Cancel a prediction
 
-    Prediction cancel(String id);
+    PredictionResponse cancel(String id);
 }
