@@ -40,7 +40,7 @@ public class ModelActionsTest extends BaseReplicateTest {
     @Test
     void getModelVersionTest() {
         String owner = "nilsw13";
-        String modelName = " linkedin_flux_01";
+        String modelName = "linkedin_flux_01";
         String versionId = "4fee9b1305f4bbfeeabc2ad9db14cf904d40070c71a962eb2def07e098973bef";
         Version response = replicate.models().getModelVersion(owner, modelName, versionId);
         System.out.println(response.getId());
@@ -61,22 +61,26 @@ public class ModelActionsTest extends BaseReplicateTest {
     @Test
     void deleteModelVersionTest() {
         String owner = "nilsw13";
-        String modelName = " linkedin_flux_01";
-        String versionId = "4fee9b1305f4bbfeeabc2ad9db14cf904d40070c71a962eb2def07e098973bef";
+        String modelName = "nilslinked-108216909907328377651";
+        String versionId = "59e096d271654c7f471c47d93344e5947ae2bd3477e8f9d29f88c8ede0a9c173";
         Version response = replicate.models().deleteModelVersion(owner, modelName, versionId);
+
+        System.out.println(response);
+
 
 
     }
 
     @Test void deleteModelTest() {
         String owner = "nilsw13";
-        String modelName = "testdev-102119321145802782035";
-        String versionId = "84d630efd1c746cab7ffd1c5aae551ad960df75c32bbdee0a36fc308f88c8438";
+        String modelName = "nilslinked-108216909907328377651";
 
 
         Model response = replicate.models().delete(owner, modelName);
         System.out.println(response);
-        assertThat(response.getId()).isNull();
+
+        assertThat(response).isNull();
+
     }
 
     @Test
