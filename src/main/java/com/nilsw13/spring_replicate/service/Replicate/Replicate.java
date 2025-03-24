@@ -1,6 +1,7 @@
 package com.nilsw13.spring_replicate.service.Replicate;
 
 import com.nilsw13.spring_replicate.service.Account.AccountService;
+import com.nilsw13.spring_replicate.service.Deployments.DeploymentService;
 import com.nilsw13.spring_replicate.service.Model.ModelService;
 import com.nilsw13.spring_replicate.service.SecretWebhook.SecretSigningWebhookService;
 import com.nilsw13.spring_replicate.service.collection.CollectionService;
@@ -13,5 +14,6 @@ public interface Replicate {
     PredictionService predictions();
     ModelService models();
     CollectionService collections();
+    DeploymentService deployments();
 
 }

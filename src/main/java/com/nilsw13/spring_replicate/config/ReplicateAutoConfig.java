@@ -1,6 +1,7 @@
 package com.nilsw13.spring_replicate.config;
 
 import com.nilsw13.spring_replicate.impl.*;
+import com.nilsw13.spring_replicate.service.Deployments.DeploymentService;
 import com.nilsw13.spring_replicate.service.Model.ModelService;
 import com.nilsw13.spring_replicate.service.Replicate.Replicate;
 import com.nilsw13.spring_replicate.api.ReplicateRestClient;
@@ -59,6 +60,12 @@ public class ReplicateAutoConfig {
         return  new CollectionServiceImpl(replicateRestClient);
     }
 
+    @Bean
+    @ConditionalOnMissingBean
+    public DeploymentService deploymentService(ReplicateRestClient replicateRestClient){
+        return new DeploymentServiceImpl(replicateRestClient);
+    }
+
 
 
 
@@ -66,8 +73,8 @@ public class ReplicateAutoConfig {
     @ConditionalOnMissingBean
     public Replicate replicate(AccountService accountService,
                                SecretSigningWebhookService secretSigningWebhookService,
-                               PredictionService predictionService, ModelService modelService, CollectionService collectionService) {
-        return new ReplicateService(accountService, secretSigningWebhookService, predictionService, modelService, collectionService);
+                               PredictionService predictionService, ModelService modelService, CollectionService collectionService, DeploymentService deploymentService) {
+        return new ReplicateService(accountService, secretSigningWebhookService, predictionService, modelService, collectionService, deploymentService);
     }
 
 
