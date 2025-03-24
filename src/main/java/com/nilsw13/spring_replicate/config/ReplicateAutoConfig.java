@@ -5,6 +5,7 @@ import com.nilsw13.spring_replicate.service.Model.ModelService;
 import com.nilsw13.spring_replicate.service.Replicate.Replicate;
 import com.nilsw13.spring_replicate.api.ReplicateRestClient;
 import com.nilsw13.spring_replicate.service.Account.AccountService;
+import com.nilsw13.spring_replicate.service.collection.CollectionService;
 import com.nilsw13.spring_replicate.service.prediction.PredictionService;
 import com.nilsw13.spring_replicate.service.Replicate.ReplicateService;
 import com.nilsw13.spring_replicate.service.SecretWebhook.SecretSigningWebhookService;
@@ -52,6 +53,12 @@ public class ReplicateAutoConfig {
         return new ModelServiceImpl(replicateRestClient);
     }
 
+    @Bean
+    @ConditionalOnMissingBean
+    public CollectionService collectionService(ReplicateRestClient replicateRestClient){
+        return  new CollectionServiceImpl(replicateRestClient);
+    }
+
 
 
 
@@ -59,8 +66,8 @@ public class ReplicateAutoConfig {
     @ConditionalOnMissingBean
     public Replicate replicate(AccountService accountService,
                                SecretSigningWebhookService secretSigningWebhookService,
-                               PredictionService predictionService, ModelService modelService) {
-        return new ReplicateService(accountService, secretSigningWebhookService, predictionService, modelService);
+                               PredictionService predictionService, ModelService modelService, CollectionService collectionService) {
+        return new ReplicateService(accountService, secretSigningWebhookService, predictionService, modelService, collectionService);
     }
 
 

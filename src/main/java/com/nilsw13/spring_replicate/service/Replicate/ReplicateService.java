@@ -3,6 +3,7 @@ package com.nilsw13.spring_replicate.service.Replicate;
 import com.nilsw13.spring_replicate.service.Account.AccountService;
 import com.nilsw13.spring_replicate.service.Model.ModelService;
 import com.nilsw13.spring_replicate.service.SecretWebhook.SecretSigningWebhookService;
+import com.nilsw13.spring_replicate.service.collection.CollectionService;
 import com.nilsw13.spring_replicate.service.prediction.PredictionService;
 
 public class ReplicateService implements Replicate {
@@ -11,12 +12,14 @@ public class ReplicateService implements Replicate {
     private final SecretSigningWebhookService secretSigningWebhookService;
     private final PredictionService predictionService;
     private final ModelService modelService;
+    private final CollectionService collectionService;
 
-    public ReplicateService(AccountService accountService, SecretSigningWebhookService secretSigningWebhookService, PredictionService predictionService, ModelService modelService) {
+    public ReplicateService(AccountService accountService, SecretSigningWebhookService secretSigningWebhookService, PredictionService predictionService, ModelService modelService, CollectionService collectionService) {
         this.accountService = accountService;
         this.secretSigningWebhookService = secretSigningWebhookService;
         this.predictionService = predictionService;
         this.modelService = modelService;
+        this.collectionService = collectionService;
     }
 
     @Override
@@ -34,6 +37,11 @@ public class ReplicateService implements Replicate {
     @Override
     public ModelService models() {
         return modelService;
+    }
+
+    @Override
+    public CollectionService collections() {
+        return collectionService;
     }
 
     @Override
