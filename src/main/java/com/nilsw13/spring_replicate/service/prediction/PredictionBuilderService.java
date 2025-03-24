@@ -18,6 +18,8 @@ public interface PredictionBuilderService {
     PredictionBuilderService webhookEventFilter(List<WebhookEvent> events);
 
     // run prediction and return result
+    Prediction executeFromDeployment(boolean wait) throws InterruptedException;
+    Prediction executeFromDeployment(boolean wait, int timeoutSeconds) throws InterruptedException;
     Prediction executeFromModel(boolean wait) throws InterruptedException;
     Prediction executeFromModel(boolean wait, int timeoutSeconds) throws InterruptedException;
     Prediction execute(boolean wait) throws InterruptedException;

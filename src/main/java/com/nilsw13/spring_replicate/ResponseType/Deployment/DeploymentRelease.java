@@ -16,7 +16,7 @@ public class DeploymentRelease {
     @JsonProperty("created_by")
     private Map<String, String> createdBy;
 
-    private Map<String, Object> configuration;
+    private DeploymentConfiguration configuration;
 
     public String getNumber() {
         return number;
@@ -38,7 +38,7 @@ public class DeploymentRelease {
         return createdBy;
     }
 
-    public Map<String, Object> getConfiguration() {
+    public DeploymentConfiguration getConfiguration() {
         return configuration;
     }
 }

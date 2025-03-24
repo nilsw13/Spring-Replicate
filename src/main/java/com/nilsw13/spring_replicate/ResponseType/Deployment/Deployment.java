@@ -10,6 +10,21 @@ public class Deployment {
     @JsonProperty("current_release")
     private DeploymentRelease deploymentRelease;
 
+    public Deployment() {
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDeploymentRelease(DeploymentRelease deploymentRelease) {
+        this.deploymentRelease = deploymentRelease;
+    }
+
     public String getOwner() {
         return owner;
     }

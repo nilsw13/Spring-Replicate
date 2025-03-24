@@ -1,12 +1,16 @@
 package com.nilsw13.spring_replicate.api;
 
+import com.nilsw13.spring_replicate.ResponseType.Deployment.DeploymentConfiguration;
 import com.nilsw13.spring_replicate.config.ReplicateProperties;
 import com.nilsw13.spring_replicate.exception.ReplicateApiException;
 import org.springframework.http.*;
+import org.springframework.http.client.ClientHttpRequestFactory;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.Collections;
 import java.util.Map;
 
 public class ReplicateRestClient {
@@ -104,6 +108,37 @@ public class ReplicateRestClient {
                     e.getStatusCode().value(),
                     e.getResponseBodyAsString()
             );
+        }
+    }
+
+
+    // PATCH method to update field in deployments
+
+    public <T> T patch(String endpoint, DeploymentConfiguration changes, Class<T> responseType) {
+        String url = buildUrl(endpoint);
+        ClientHttpRequestFactory originalFactory = restTemplate.getRequestFactory();
+
+        try {
+            restTemplate.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
+
+            HttpEntity<?> entity = new HttpEntity<>(changes != null ? changes : Collections.emptyMap(), defaultHeaders);
+            ResponseEntity<T> response = restTemplate.exchange(
+                    url,
+                    HttpMethod.PATCH,
+                    entity,
+                    responseType
+            );
+            return response.getBody();
+
+        } catch (HttpStatusCodeException e) {
+            throw new ReplicateApiException(
+                    "Error while post method on Replicate API :" + endpoint,
+                    e,
+                    e.getStatusCode().value(),
+                    e.getResponseBodyAsString()
+            );
+        } finally {
+            restTemplate.setRequestFactory(originalFactory);
         }
     }
 

@@ -62,6 +62,36 @@ public class PredictionBuilderServiceImpl implements PredictionBuilderService {
     }
 
     @Override
+    public Prediction executeFromDeployment(boolean wait) throws InterruptedException {
+        return executeFromDeployment(wait, wait ? 300 : 0);
+    }
+
+    @Override
+    public Prediction executeFromDeployment(boolean wait, int timeoutSeconds) throws InterruptedException {
+        Map<String, Object> requestBody = new HashMap<>();
+        Map<String, String> headers = new HashMap<>();
+        requestBody.put("input", inputs);
+
+        if (webhookUrl != null && !webhookUrl.isEmpty()){
+            requestBody.put("webhook", webhookUrl);
+            if(webhookEventFilter != null && !webhookEventFilter.isEmpty()) {
+                requestBody.put("webhook_events_filter", webhookEventFilter);
+            }
+        }
+
+
+        // add Prefer header if wait is true
+        if (wait) {
+            headers.put("Prefer", "wait=" + timeoutSeconds);
+            Prediction response = restClient.post("deployments/" + modelOwner + "/" + modelName + "/" + "predictions", requestBody, headers,  Prediction.class);
+        }
+
+
+        return restClient.post("deployments/" + modelOwner + "/" + modelName + "/" + "predictions"  , requestBody, Prediction.class);
+
+    }
+
+    @Override
     public Prediction executeFromModel(boolean wait) throws InterruptedException {
         return executeFromModel(wait, wait? 300 : 0);
     }
