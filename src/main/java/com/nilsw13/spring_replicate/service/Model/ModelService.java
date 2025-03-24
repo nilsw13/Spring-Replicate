@@ -1,11 +1,19 @@
 package com.nilsw13.spring_replicate.service.Model;
 
-import com.nilsw13.spring_replicate.ResponseType.Model.ModelListResponse;
-import com.nilsw13.spring_replicate.ResponseType.Model.ModelResponse;
+import com.nilsw13.spring_replicate.ResponseType.Model.Model;
+import com.nilsw13.spring_replicate.ResponseType.Model.ModelList;
+import com.nilsw13.spring_replicate.ResponseType.Model.ModelVersionList;
+import com.nilsw13.spring_replicate.ResponseType.Model.Version;
 
 public interface ModelService {
 
-    ModelResponse get(String modelOwner, String modelName);
-    ModelListResponse list();
+    Model create(Model request);
+    Model get(String modelOwner, String modelName);
+    Model delete(String modelOwner, String modelName);
+    ModelList list();
+    ModelVersionList listModelVersions(String modelOwner, String modelName);
+    Version getModelVersion(String modelOwner, String modelName, String versionId);
+    Version deleteModelVersion(String modelOwner, String modelName, String versionId);
+    String getModelReadme(String modelOwner, String modelName);
 
 }

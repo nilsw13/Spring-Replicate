@@ -2,10 +2,10 @@ package com.nilsw13.spring_replicate.ResponseType.Prediction;
 
 import java.util.List;
 
-public class PredictionsListResponse {
+public class PredictionsList {
     private String next;
     private String previous;
-    private List<PredictionResponse> results;
+    private List<Prediction> results;
 
     public String getNext() {
         return next;
@@ -23,11 +23,11 @@ public class PredictionsListResponse {
         this.previous = previous;
     }
 
-    public List<PredictionResponse> getResults() {
+    public List<Prediction> getResults() {
         return results;
     }
 
-    public void setResults(List<PredictionResponse> results) {
+    public void setResults(List<Prediction> results) {
         this.results = results;
     }
 }

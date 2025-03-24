@@ -2,13 +2,13 @@ package com.nilsw13.spring_replicate.ResponseType.Model;
 
 import java.util.List;
 
-public class ModelListResponse {
+public class ModelList {
 
     private String previous;
     private String next;
-    private List<ModelResponse> results;
+    private List<Model> results;
 
-    public ModelListResponse() {
+    public ModelList() {
     }
 
     public String getPrevious() {
@@ -19,7 +19,7 @@ public class ModelListResponse {
         return next;
     }
 
-    public List<ModelResponse> getResults() {
+    public List<Model> getResults() {
         return results;
     }
 }

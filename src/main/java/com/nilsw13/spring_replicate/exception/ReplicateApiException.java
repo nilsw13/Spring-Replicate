@@ -44,7 +44,7 @@ public class ReplicateApiException extends RuntimeException {
         }
 
         if (responseBody != null && !responseBody.isEmpty()) {
-            sb.append(" AccountResponse: ").append(responseBody);
+            sb.append(" Account: ").append(responseBody);
         }
 
         return sb.toString();

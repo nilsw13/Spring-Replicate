@@ -1,14 +1,14 @@
 package com.nilsw13.spring_replicate.ResponseType.webhook;
 
-public class SecretSigningWebhookResponse {
+public class SecretSigningWebhook {
 
     private String key;
 
-    public SecretSigningWebhookResponse(String key) {
+    public SecretSigningWebhook(String key) {
         this.key = key;
     }
 
-    public SecretSigningWebhookResponse() {
+    public SecretSigningWebhook() {
     }
 
     public String getKey() {

@@ -2,7 +2,7 @@ package com.nilsw13.spring_replicate.impl;
 
 import com.nilsw13.spring_replicate.ResponseType.webhook.WebhookEvent;
 import com.nilsw13.spring_replicate.api.ReplicateRestClient;
-import com.nilsw13.spring_replicate.ResponseType.Prediction.PredictionResponse;
+import com.nilsw13.spring_replicate.ResponseType.Prediction.Prediction;
 import com.nilsw13.spring_replicate.service.prediction.PredictionBuilderService;
 import org.springframework.stereotype.Service;
 
@@ -53,14 +53,16 @@ public class PredictionBuilderServiceImpl implements PredictionBuilderService {
         return this;
     }
 
+
+
     @Override
-    public PredictionResponse execute(boolean wait) throws InterruptedException {
+    public Prediction execute(boolean wait) throws InterruptedException {
         return execute(wait, wait? 300 :0);
     }
 
 
     @Override
-    public PredictionResponse execute(boolean wait, int timeoutSeconds) throws InterruptedException {
+    public Prediction execute(boolean wait, int timeoutSeconds) throws InterruptedException {
         Map<String, Object> requestBody = new HashMap<>();
         Map<String, String> headers = new HashMap<>();
         requestBody.put("version", modelVersion);
@@ -77,11 +79,10 @@ public class PredictionBuilderServiceImpl implements PredictionBuilderService {
         // add Prefer header if wait is true
         if (wait) {
            headers.put("Prefer", "wait=" + timeoutSeconds);
+            Prediction response = restClient.post("predictions", requestBody, headers,  Prediction.class);
         }
 
-        PredictionResponse response = restClient.post("predictions", requestBody, headers,  PredictionResponse.class);
 
-
-        return response;
+        return restClient.post("predictions" , requestBody, Prediction.class);
     }
 }

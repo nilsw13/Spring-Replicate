@@ -1,7 +1,9 @@
 package com.nilsw13.spring_replicate.impl;
 
-import com.nilsw13.spring_replicate.ResponseType.Model.ModelListResponse;
-import com.nilsw13.spring_replicate.ResponseType.Model.ModelResponse;
+import com.nilsw13.spring_replicate.ResponseType.Model.Model;
+import com.nilsw13.spring_replicate.ResponseType.Model.ModelList;
+import com.nilsw13.spring_replicate.ResponseType.Model.ModelVersionList;
+import com.nilsw13.spring_replicate.ResponseType.Model.Version;
 import com.nilsw13.spring_replicate.api.ReplicateRestClient;
 import com.nilsw13.spring_replicate.service.Model.ModelService;
 import org.springframework.stereotype.Service;
@@ -17,12 +19,44 @@ public class ModelServiceImpl implements ModelService {
 
 
     @Override
-    public ModelResponse get(String modelOwner, String modelName) {
-        return replicateRestClient.get("models/" + modelOwner + "/" + modelName , ModelResponse.class);
+    public Model create(Model request) {
+        return replicateRestClient.post("models", request, Model.class);
     }
 
     @Override
-    public ModelListResponse list() {
-        return replicateRestClient.get("models", ModelListResponse.class);
+    public Model get(String modelOwner, String modelName) {
+        return replicateRestClient.get("models/" + modelOwner + "/" + modelName , Model.class);
+    }
+
+    @Override
+    public Model delete(String modelOwner, String modelName) {
+        return replicateRestClient.delete("models/" + modelOwner + "/" + modelName, Model.class );
+    }
+
+    @Override
+    public ModelList list() {
+        return replicateRestClient.get("models", ModelList.class);
+    }
+
+
+
+    @Override
+    public ModelVersionList listModelVersions(String modelOwner, String modelName) {
+        return replicateRestClient.get("models/" + modelOwner + "/" + modelName + "/" +"versions", ModelVersionList.class);
+    }
+
+    @Override
+    public Version getModelVersion(String modelOwner, String modelName, String versionId) {
+        return replicateRestClient.get("models/" + modelOwner + "/" + modelName + "/"  + "versions/"  + versionId, Version.class);
+    }
+
+    @Override
+    public Version deleteModelVersion(String modelOwner, String modelName, String versionId) {
+        return replicateRestClient.delete("models/" + modelOwner + "/" + modelName + "/"  + "versions/" + versionId, Version.class);
+    }
+
+    @Override
+    public String getModelReadme(String modelOwner, String modelName) {
+        return replicateRestClient.get("models/" + modelOwner + "/" + modelName + "/" + "readme", String.class);
     }
 }

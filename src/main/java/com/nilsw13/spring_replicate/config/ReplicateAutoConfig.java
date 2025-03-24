@@ -1,13 +1,10 @@
 package com.nilsw13.spring_replicate.config;
 
-import com.nilsw13.spring_replicate.impl.PredictionBuilderServiceImpl;
+import com.nilsw13.spring_replicate.impl.*;
+import com.nilsw13.spring_replicate.service.Model.ModelService;
 import com.nilsw13.spring_replicate.service.Replicate.Replicate;
 import com.nilsw13.spring_replicate.api.ReplicateRestClient;
-import com.nilsw13.spring_replicate.impl.AccountServiceImpl;
-import com.nilsw13.spring_replicate.impl.PredictionServiceImpl;
-import com.nilsw13.spring_replicate.impl.SecretSigningWebhookServiceImpl;
 import com.nilsw13.spring_replicate.service.Account.AccountService;
-import com.nilsw13.spring_replicate.service.prediction.PredictionBuilderService;
 import com.nilsw13.spring_replicate.service.prediction.PredictionService;
 import com.nilsw13.spring_replicate.service.Replicate.ReplicateService;
 import com.nilsw13.spring_replicate.service.SecretWebhook.SecretSigningWebhookService;
@@ -53,14 +50,21 @@ public class ReplicateAutoConfig {
         return  new PredictionServiceImpl(replicateRestClient);
     }
 
+    @Bean
+    @ConditionalOnMissingBean
+    public ModelService modelService(ReplicateRestClient replicateRestClient) {
+        return new ModelServiceImpl(replicateRestClient);
+    }
+
+
 
 
     @Bean
     @ConditionalOnMissingBean
     public Replicate replicate(AccountService accountService,
                                SecretSigningWebhookService secretSigningWebhookService,
-                               PredictionService predictionService) {
-        return new ReplicateService(accountService, secretSigningWebhookService, predictionService);
+                               PredictionService predictionService, ModelService modelService) {
+        return new ReplicateService(accountService, secretSigningWebhookService, predictionService, modelService);
     }
 
 

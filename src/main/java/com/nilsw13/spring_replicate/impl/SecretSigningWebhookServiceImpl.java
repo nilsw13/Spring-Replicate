@@ -1,7 +1,7 @@
 package com.nilsw13.spring_replicate.impl;
 
 import com.nilsw13.spring_replicate.api.ReplicateRestClient;
-import com.nilsw13.spring_replicate.ResponseType.webhook.SecretSigningWebhookResponse;
+import com.nilsw13.spring_replicate.ResponseType.webhook.SecretSigningWebhook;
 import com.nilsw13.spring_replicate.service.SecretWebhook.SecretSigningWebhookService;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +15,7 @@ public class SecretSigningWebhookServiceImpl implements SecretSigningWebhookServ
     }
 
     @Override
-    public SecretSigningWebhookResponse getDefaultSecretSigningWebhook() {
-        return restClient.get("webhooks/default/secret", SecretSigningWebhookResponse.class);
+    public SecretSigningWebhook getDefaultSecretSigningWebhook() {
+        return restClient.get("webhooks/default/secret", SecretSigningWebhook.class);
     }
 }

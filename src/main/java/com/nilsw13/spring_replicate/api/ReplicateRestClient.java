@@ -107,6 +107,33 @@ public class ReplicateRestClient {
         }
     }
 
+
+//    // post request for search a model with quey params
+//    public <T> T postSearch(String endpoint, Object body, Class<T> responseType) {
+//        String url = buildUrl(endpoint);
+//        defaultHeaders.setContentType(MediaType.TEXT_PLAIN);
+//
+//        try {
+//            HttpEntity<?> entity = new HttpEntity<>(body, defaultHeaders);
+//            ResponseEntity<T> responseEntity = restTemplate.exchange(
+//                    url,
+//                    HttpMethod.POST,
+//                    entity,
+//                    responseType
+//            );
+//            return responseEntity.getBody();
+//        } catch (HttpStatusCodeException e) {
+//            throw new ReplicateApiException(
+//                    "Error while post method on Replicate API :" + endpoint,
+//                    e,
+//                    e.getStatusCode().value(),
+//                    e.getResponseBodyAsString()
+//            );
+//        }
+//    }
+
+
+
     // post request without requestBody for delete methods
     public <T> T post(String endpoint, Class<T> responseType){
         String url = buildUrl(endpoint);
@@ -130,11 +157,35 @@ public class ReplicateRestClient {
         }
     }
 
+    // DELETE method
+    public <T> T delete(String endpoint , Class<T> responseType) {
+        String url = buildUrl(endpoint);
+
+        try {
+           HttpEntity<?> entity = new HttpEntity<>(defaultHeaders);
+           ResponseEntity<T> response = restTemplate.exchange(
+                   url,
+                   HttpMethod.DELETE,
+                   entity,
+                   responseType
+           );
+           return response.getBody();
+        } catch (HttpStatusCodeException e) {
+            throw  new ReplicateApiException(
+                    "Error while post method on Replicate API :" + endpoint,
+                    e,
+                    e.getStatusCode().value(),
+                    e.getResponseBodyAsString()
+            );
+        }
+
+    }
+
 
 
 
     private String buildUrl(String endpoint) {
-        String sanitizedEndpoint = sanitizeEndpoint(endpoint); // Normalisation du chemin de l'endpoint
+        String sanitizedEndpoint = sanitizeEndpoint(endpoint);
         return UriComponentsBuilder.fromUriString(baseUrl)
                 .path(sanitizedEndpoint)
                 .build()

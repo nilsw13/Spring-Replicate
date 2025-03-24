@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Map;
 
-public class PredictionResponse {
+public class Prediction {
 
 
     @JsonProperty("data_removed")
@@ -29,7 +29,7 @@ public class PredictionResponse {
     private String model;
     private String version;
 
-    public PredictionResponse() {
+    public Prediction() {
 
 
     }

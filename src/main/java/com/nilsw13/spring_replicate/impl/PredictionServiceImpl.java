@@ -1,8 +1,8 @@
 package com.nilsw13.spring_replicate.impl;
 
+import com.nilsw13.spring_replicate.ResponseType.Prediction.PredictionsList;
 import com.nilsw13.spring_replicate.api.ReplicateRestClient;
-import com.nilsw13.spring_replicate.ResponseType.Prediction.PredictionResponse;
-import com.nilsw13.spring_replicate.ResponseType.Prediction.PredictionsListResponse;
+import com.nilsw13.spring_replicate.ResponseType.Prediction.Prediction;
 import com.nilsw13.spring_replicate.service.prediction.PredictionBuilderService;
 import com.nilsw13.spring_replicate.service.prediction.PredictionService;
 import org.springframework.stereotype.Service;
@@ -19,13 +19,13 @@ public class PredictionServiceImpl implements PredictionService {
 
 
     @Override
-    public PredictionsListResponse list() {
-        return restClient.get("predictions", PredictionsListResponse.class);
+    public PredictionsList list() {
+        return restClient.get("predictions", PredictionsList.class);
     }
 
     @Override
-    public PredictionResponse get(String id) {
-        return restClient.get("predictions/" + id, PredictionResponse.class);
+    public Prediction get(String id) {
+        return restClient.get("predictions/" + id, Prediction.class);
     }
 
     @Override
@@ -34,8 +34,8 @@ public class PredictionServiceImpl implements PredictionService {
     }
 
     @Override
-    public PredictionResponse cancel(String id) {
-        return restClient.post("predictions/" + id + "/cancel", PredictionResponse.class);
+    public Prediction cancel(String id) {
+        return restClient.post("predictions/" + id + "/cancel", Prediction.class);
     }
 
 

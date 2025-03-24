@@ -1,6 +1,6 @@
 package com.nilsw13.spring_replicate.service.prediction;
 
-import com.nilsw13.spring_replicate.ResponseType.Prediction.PredictionResponse;
+import com.nilsw13.spring_replicate.ResponseType.Prediction.Prediction;
 import com.nilsw13.spring_replicate.ResponseType.webhook.WebhookEvent;
 
 import java.util.List;
@@ -18,6 +18,6 @@ public interface PredictionBuilderService {
     PredictionBuilderService webhookEventFilter(List<WebhookEvent> events);
 
     // run prediction and return result
-    PredictionResponse execute(boolean wait) throws InterruptedException;
-    PredictionResponse execute(boolean wait, int timeoutSeconds) throws InterruptedException;
+    Prediction execute(boolean wait) throws InterruptedException;
+    Prediction execute(boolean wait, int timeoutSeconds) throws InterruptedException;
 }

@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigInteger;
 import java.util.Map;
 
-public class ModelResponse {
+public class Model {
     private String id;
 
     public String getId() {
@@ -17,6 +17,7 @@ public class ModelResponse {
     private String name;
     private String description;
     private String visibility;
+    private String hardware;
     @JsonProperty("github_url")
     private String githubUrl;
     @JsonProperty("paper_url")
@@ -34,6 +35,31 @@ public class ModelResponse {
 
     public String getUrl() {
         return url;
+    }
+
+
+    public String getHardware() {
+        return hardware;
+    }
+
+    public void setHardware(String hardware) {
+        this.hardware = hardware;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setVisibility(String visibility) {
+        this.visibility = visibility;
     }
 
     public String getOwner() {
@@ -82,7 +108,7 @@ public class ModelResponse {
 
     @Override
     public String toString() {
-        return "ModelResponse{" +
+        return "Model{" +
                 "id='" + getId() + '\'' +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
