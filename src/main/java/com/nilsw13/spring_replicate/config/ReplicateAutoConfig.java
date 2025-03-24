@@ -20,11 +20,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 @ConditionalOnProperty(prefix = "replicate", name = "api-key")
 public class ReplicateAutoConfig {
 
-    @Bean
-    @ConditionalOnMissingBean
-    public WebClient.Builder webClientBuilder() {
-        return  WebClient.builder();
-    }
+
 
     @Bean
     @ConditionalOnMissingBean
