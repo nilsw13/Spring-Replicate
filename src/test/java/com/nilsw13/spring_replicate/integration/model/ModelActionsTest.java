@@ -40,8 +40,8 @@ public class ModelActionsTest extends BaseReplicateTest {
     @Test
     void getModelVersionTest() {
         String owner = "nilsw13";
-        String modelName = "nari_flux_04";
-        String versionId = "4b4d50e4ab188e2c955255dd95bedbb4dc5a09681d597746709219e181689cfd";
+        String modelName = " linkedin_flux_01";
+        String versionId = "4fee9b1305f4bbfeeabc2ad9db14cf904d40070c71a962eb2def07e098973bef";
         Version response = replicate.models().getModelVersion(owner, modelName, versionId);
         System.out.println(response.getId());
         System.out.println(response.getCogVersion());
@@ -61,8 +61,8 @@ public class ModelActionsTest extends BaseReplicateTest {
     @Test
     void deleteModelVersionTest() {
         String owner = "nilsw13";
-        String modelName = "nari_flux_04";
-        String versionId = "ef560df1a9433538ec6b335b5d6314ea83afa7ea76333b8fb2340dab6c4cf805";
+        String modelName = " linkedin_flux_01";
+        String versionId = "4fee9b1305f4bbfeeabc2ad9db14cf904d40070c71a962eb2def07e098973bef";
         Version response = replicate.models().deleteModelVersion(owner, modelName, versionId);
 
 
