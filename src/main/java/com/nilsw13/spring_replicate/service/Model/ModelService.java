@@ -4,10 +4,12 @@ import com.nilsw13.spring_replicate.ResponseType.Model.Model;
 import com.nilsw13.spring_replicate.ResponseType.Model.ModelList;
 import com.nilsw13.spring_replicate.ResponseType.Model.ModelVersionList;
 import com.nilsw13.spring_replicate.ResponseType.Model.Version;
+import com.nilsw13.spring_replicate.service.prediction.PredictionBuilderService;
 
 public interface ModelService {
 
     Model create(Model request);
+    PredictionBuilderService createModelPrediction(String modelOwner, String modelName);
     Model get(String modelOwner, String modelName);
     Model delete(String modelOwner, String modelName);
     ModelList list();

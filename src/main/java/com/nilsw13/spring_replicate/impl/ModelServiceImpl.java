@@ -6,12 +6,14 @@ import com.nilsw13.spring_replicate.ResponseType.Model.ModelVersionList;
 import com.nilsw13.spring_replicate.ResponseType.Model.Version;
 import com.nilsw13.spring_replicate.api.ReplicateRestClient;
 import com.nilsw13.spring_replicate.service.Model.ModelService;
+import com.nilsw13.spring_replicate.service.prediction.PredictionBuilderService;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ModelServiceImpl implements ModelService {
 
     private final ReplicateRestClient replicateRestClient;
+    private String modelVersion;
 
     public ModelServiceImpl(ReplicateRestClient replicateRestClient) {
         this.replicateRestClient = replicateRestClient;
@@ -22,6 +24,12 @@ public class ModelServiceImpl implements ModelService {
     public Model create(Model request) {
         return replicateRestClient.post("models", request, Model.class);
     }
+
+    @Override
+    public PredictionBuilderService createModelPrediction(String modelOwner, String modelName) {
+        return new PredictionBuilderServiceImpl(replicateRestClient, modelVersion, modelOwner, modelName);
+    }
+
 
     @Override
     public Model get(String modelOwner, String modelName) {
