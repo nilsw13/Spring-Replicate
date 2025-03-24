@@ -16,14 +16,22 @@ public class PredictionBuilderServiceImpl implements PredictionBuilderService {
 
     private final ReplicateRestClient restClient;
     private final String modelVersion;
+    private final String modelOwner;
+    private final String modelName;
+
+
     private final Map<String, Object> inputs = new HashMap<>();
     private String webhookUrl;
     private List<String> webhookEventFilter;
 
-    public PredictionBuilderServiceImpl(ReplicateRestClient restClient, String modelVersion) {
+    public PredictionBuilderServiceImpl(ReplicateRestClient restClient, String modelVersion, String modelOwner, String modelName) {
         this.restClient = restClient;
         this.modelVersion = modelVersion;
+        this.modelOwner = modelOwner;
+        this.modelName = modelName;
     }
+
+
 
     @Override
     public PredictionBuilderService input(String key, Object value) {
@@ -53,6 +61,35 @@ public class PredictionBuilderServiceImpl implements PredictionBuilderService {
         return this;
     }
 
+    @Override
+    public Prediction executeFromModel(boolean wait) throws InterruptedException {
+        return executeFromModel(wait, wait? 300 : 0);
+    }
+
+    @Override
+    public Prediction executeFromModel(boolean wait, int timeoutSeconds) throws InterruptedException {
+        Map<String, Object> requestBody = new HashMap<>();
+        Map<String, String> headers = new HashMap<>();
+        requestBody.put("input", inputs);
+
+        if (webhookUrl != null && !webhookUrl.isEmpty()){
+            requestBody.put("webhook", webhookUrl);
+            if(webhookEventFilter != null && !webhookEventFilter.isEmpty()) {
+                requestBody.put("webhook_events_filter", webhookEventFilter);
+            }
+        }
+
+
+        // add Prefer header if wait is true
+        if (wait) {
+            headers.put("Prefer", "wait=" + timeoutSeconds);
+            Prediction response = restClient.post("models/" + modelOwner + "/" + modelName + "/" + "predictions", requestBody, headers,  Prediction.class);
+        }
+
+
+        return restClient.post("models/" + modelOwner + "/" + modelName + "/" + "predictions"  , requestBody, Prediction.class);
+
+    }
 
 
     @Override
