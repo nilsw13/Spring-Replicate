@@ -4,6 +4,7 @@ import com.nilsw13.spring_replicate.ResponseType.Model.Model;
 import com.nilsw13.spring_replicate.ResponseType.Model.ModelList;
 import com.nilsw13.spring_replicate.ResponseType.Model.ModelVersionList;
 import com.nilsw13.spring_replicate.ResponseType.Model.Version;
+import com.nilsw13.spring_replicate.ResponseType.Prediction.Prediction;
 import com.nilsw13.spring_replicate.integration.BaseReplicateTest;
 import org.junit.jupiter.api.Test;
 
@@ -84,7 +85,7 @@ public class ModelActionsTest extends BaseReplicateTest {
     }
 
     @Test
-    void createModelTest() {
+    void createModelTest() throws InterruptedException {
         Model model = new Model();
         model.setOwner("nilsw13");
         model.setVisibility("private");
@@ -93,8 +94,19 @@ public class ModelActionsTest extends BaseReplicateTest {
         model.setHardware("cpu");
 
         Model response = replicate.models().create(model);
+
         System.out.println(response.getName());
         assertThat(response).isNotNull();
+
+    }
+
+    @Test
+    void createPredictionFromModelTest() throws InterruptedException {
+        Prediction prediction = replicate.models().createModelPrediction("meta", "meta-llama-3-70b-instruct")
+                .input("prompt", "Write a short poem about the weather")
+                .executeFromModel(true, 60);
+
+        System.out.println(prediction.getOutput());
 
     }
 

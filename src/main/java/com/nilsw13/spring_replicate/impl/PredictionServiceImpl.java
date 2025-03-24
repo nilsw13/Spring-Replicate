@@ -17,6 +17,9 @@ public class PredictionServiceImpl implements PredictionService {
 
     }
 
+    private String modelOwner;
+    private String modelName;
+
 
     @Override
     public PredictionsList list() {
@@ -30,7 +33,7 @@ public class PredictionServiceImpl implements PredictionService {
 
     @Override
     public PredictionBuilderService create(String modelVersion) {
-        return new PredictionBuilderServiceImpl(restClient, modelVersion);
+        return new PredictionBuilderServiceImpl(restClient, modelVersion, modelOwner, modelName);
     }
 
     @Override
