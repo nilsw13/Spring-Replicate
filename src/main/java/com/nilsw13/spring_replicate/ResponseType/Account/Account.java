@@ -2,6 +2,17 @@ package com.nilsw13.spring_replicate.ResponseType.Account;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
+/**
+ * Represents user account information from the Replicate API.
+ *
+ * This class contains basic profile information about a Replicate user account,
+ * including identification details and profile links. The information is retrieved
+ * from the authenticated API token's associated account.
+ *
+ * @author Nilsw13
+ * @since 1.0.0
+ */
 public class Account {
 
     private String type;
@@ -11,12 +22,7 @@ public class Account {
     @JsonProperty("github_url")
     private String githubUrl;
 
-    public Account(String githubUrl, String name, String username, String type) {
-        this.githubUrl = githubUrl;
-        this.name = name;
-        this.username = username;
-        this.type = type;
-    }
+
 
     public Account() {
 

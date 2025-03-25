@@ -78,7 +78,6 @@ public class ReplicateRestClient {
         }
     }
 
-    // post method with headers
     public <T> T post(String endpoint, Object body,  Map<String, String> headers,  Class<T> responseType){
         String url = buildUrl(endpoint);
 
@@ -112,7 +111,6 @@ public class ReplicateRestClient {
     }
 
 
-    // PATCH method to update field in deployments
 
     public <T> T patch(String endpoint, DeploymentConfiguration changes, Class<T> responseType) {
         String url = buildUrl(endpoint);
@@ -143,33 +141,10 @@ public class ReplicateRestClient {
     }
 
 
-//    // post request for search a model with quey params
-//    public <T> T postSearch(String endpoint, Object body, Class<T> responseType) {
-//        String url = buildUrl(endpoint);
-//        defaultHeaders.setContentType(MediaType.TEXT_PLAIN);
-//
-//        try {
-//            HttpEntity<?> entity = new HttpEntity<>(body, defaultHeaders);
-//            ResponseEntity<T> responseEntity = restTemplate.exchange(
-//                    url,
-//                    HttpMethod.POST,
-//                    entity,
-//                    responseType
-//            );
-//            return responseEntity.getBody();
-//        } catch (HttpStatusCodeException e) {
-//            throw new ReplicateApiException(
-//                    "Error while post method on Replicate API :" + endpoint,
-//                    e,
-//                    e.getStatusCode().value(),
-//                    e.getResponseBodyAsString()
-//            );
-//        }
-//    }
 
 
 
-    // post request without requestBody for delete methods
+
     public <T> T post(String endpoint, Class<T> responseType){
         String url = buildUrl(endpoint);
 
@@ -192,7 +167,6 @@ public class ReplicateRestClient {
         }
     }
 
-    // DELETE method
     public <T> T delete(String endpoint , Class<T> responseType) {
         String url = buildUrl(endpoint);
 

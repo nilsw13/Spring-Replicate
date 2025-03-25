@@ -1,5 +1,6 @@
 package com.nilsw13.spring_replicate.service;
 import com.nilsw13.spring_replicate.ResponseType.Account.Account;
+import com.nilsw13.spring_replicate.exception.ReplicateApiException;
 
 
 /**
@@ -20,6 +21,22 @@ import com.nilsw13.spring_replicate.ResponseType.Account.Account;
 
 public interface AccountService {
 
+
+    /**
+     * Retrieves the current authenticated user's account information.
+     *
+     * This method fetches basic profile information about the Replicate account
+     * associated with the API token configured in the application. The returned
+     * Account object contains details such as the username, name, account type,
+     * and GitHub profile URL.
+     *
+     * The method requires a valid API token to be configured, otherwise it will
+     * throw an authentication error.
+     *
+     * @return An Account object containing the user's account information
+     * @throws ReplicateApiException If an authentication error occurs or if the API
+     *         request fails for any other reason
+     */
     Account get();
 
 }
