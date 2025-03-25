@@ -1,23 +1,22 @@
 package com.nilsw13.spring_replicate.config;
 
 import com.nilsw13.spring_replicate.impl.*;
-import com.nilsw13.spring_replicate.service.Deployments.DeploymentService;
-import com.nilsw13.spring_replicate.service.Hardware.HardwareService;
-import com.nilsw13.spring_replicate.service.Model.ModelService;
-import com.nilsw13.spring_replicate.service.Replicate.Replicate;
+import com.nilsw13.spring_replicate.service.DeploymentService;
+import com.nilsw13.spring_replicate.service.HardwareService;
+import com.nilsw13.spring_replicate.service.ModelService;
+import com.nilsw13.spring_replicate.service.Replicate;
 import com.nilsw13.spring_replicate.api.ReplicateRestClient;
-import com.nilsw13.spring_replicate.service.Account.AccountService;
-import com.nilsw13.spring_replicate.service.Training.TrainingService;
-import com.nilsw13.spring_replicate.service.collection.CollectionService;
-import com.nilsw13.spring_replicate.service.prediction.PredictionService;
-import com.nilsw13.spring_replicate.service.Replicate.ReplicateService;
-import com.nilsw13.spring_replicate.service.SecretWebhook.SecretSigningWebhookService;
+import com.nilsw13.spring_replicate.service.AccountService;
+import com.nilsw13.spring_replicate.service.TrainingService;
+import com.nilsw13.spring_replicate.service.CollectionService;
+import com.nilsw13.spring_replicate.service.PredictionService;
+import com.nilsw13.spring_replicate.service.ReplicateService;
+import com.nilsw13.spring_replicate.service.SecretSigningWebhookService;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.reactive.function.client.WebClient;
 
 @Configuration
 @EnableConfigurationProperties(ReplicateProperties.class)

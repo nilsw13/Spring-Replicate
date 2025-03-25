@@ -5,8 +5,8 @@ import com.nilsw13.spring_replicate.ResponseType.Model.ModelList;
 import com.nilsw13.spring_replicate.ResponseType.Model.ModelVersionList;
 import com.nilsw13.spring_replicate.ResponseType.Model.Version;
 import com.nilsw13.spring_replicate.api.ReplicateRestClient;
-import com.nilsw13.spring_replicate.service.Model.ModelService;
-import com.nilsw13.spring_replicate.service.prediction.PredictionBuilderService;
+import com.nilsw13.spring_replicate.service.ModelService;
+import com.nilsw13.spring_replicate.service.PredictionBuilderService;
 import org.springframework.stereotype.Service;
 
 @Service

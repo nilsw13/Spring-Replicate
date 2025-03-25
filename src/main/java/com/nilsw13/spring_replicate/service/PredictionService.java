@@ -1,4 +1,4 @@
-package com.nilsw13.spring_replicate.service.prediction;
+package com.nilsw13.spring_replicate.service;
 
 import com.nilsw13.spring_replicate.ResponseType.Prediction.Prediction;
 import com.nilsw13.spring_replicate.ResponseType.Prediction.PredictionsList;

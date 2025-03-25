@@ -1,4 +1,4 @@
-package com.nilsw13.spring_replicate.service.collection;
+package com.nilsw13.spring_replicate.service;
 
 import com.nilsw13.spring_replicate.ResponseType.Collection.CollectionModel;
 import com.nilsw13.spring_replicate.ResponseType.Collection.CollectionModelList;

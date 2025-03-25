@@ -1,10 +1,9 @@
-package com.nilsw13.spring_replicate.service.Model;
+package com.nilsw13.spring_replicate.service;
 
 import com.nilsw13.spring_replicate.ResponseType.Model.Model;
 import com.nilsw13.spring_replicate.ResponseType.Model.ModelList;
 import com.nilsw13.spring_replicate.ResponseType.Model.ModelVersionList;
 import com.nilsw13.spring_replicate.ResponseType.Model.Version;
-import com.nilsw13.spring_replicate.service.prediction.PredictionBuilderService;
 
 public interface ModelService {
 

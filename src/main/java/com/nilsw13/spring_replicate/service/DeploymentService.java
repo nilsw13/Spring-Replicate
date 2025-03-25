@@ -1,11 +1,8 @@
-package com.nilsw13.spring_replicate.service.Deployments;
+package com.nilsw13.spring_replicate.service;
 
 import com.nilsw13.spring_replicate.ResponseType.Deployment.Deployment;
 import com.nilsw13.spring_replicate.ResponseType.Deployment.DeploymentConfiguration;
 import com.nilsw13.spring_replicate.ResponseType.Deployment.DeploymentList;
-import com.nilsw13.spring_replicate.service.prediction.PredictionBuilderService;
-
-import java.util.Map;
 
 public interface DeploymentService {
 

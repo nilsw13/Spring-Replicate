@@ -2,7 +2,7 @@ package com.nilsw13.spring_replicate.impl;
 
 import com.nilsw13.spring_replicate.ResponseType.Account.Account;
 import com.nilsw13.spring_replicate.api.ReplicateRestClient;
-import com.nilsw13.spring_replicate.service.Account.AccountService;
+import com.nilsw13.spring_replicate.service.AccountService;
 import org.springframework.stereotype.Service;
 
 @Service

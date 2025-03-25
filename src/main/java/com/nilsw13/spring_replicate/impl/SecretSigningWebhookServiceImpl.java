@@ -2,7 +2,7 @@ package com.nilsw13.spring_replicate.impl;
 
 import com.nilsw13.spring_replicate.api.ReplicateRestClient;
 import com.nilsw13.spring_replicate.ResponseType.webhook.SecretSigningWebhook;
-import com.nilsw13.spring_replicate.service.SecretWebhook.SecretSigningWebhookService;
+import com.nilsw13.spring_replicate.service.SecretSigningWebhookService;
 import org.springframework.stereotype.Service;
 
 @Service

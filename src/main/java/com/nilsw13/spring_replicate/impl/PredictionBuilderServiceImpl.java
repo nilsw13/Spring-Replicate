@@ -3,7 +3,7 @@ package com.nilsw13.spring_replicate.impl;
 import com.nilsw13.spring_replicate.ResponseType.webhook.WebhookEvent;
 import com.nilsw13.spring_replicate.api.ReplicateRestClient;
 import com.nilsw13.spring_replicate.ResponseType.Prediction.Prediction;
-import com.nilsw13.spring_replicate.service.prediction.PredictionBuilderService;
+import com.nilsw13.spring_replicate.service.PredictionBuilderService;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;

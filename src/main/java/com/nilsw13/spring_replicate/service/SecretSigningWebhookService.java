@@ -1,4 +1,4 @@
-package com.nilsw13.spring_replicate.service.SecretWebhook;
+package com.nilsw13.spring_replicate.service;
 
 import com.nilsw13.spring_replicate.ResponseType.webhook.SecretSigningWebhook;
 

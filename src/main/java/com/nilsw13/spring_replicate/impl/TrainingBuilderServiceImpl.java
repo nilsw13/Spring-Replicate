@@ -1,10 +1,9 @@
 package com.nilsw13.spring_replicate.impl;
 
-import com.nilsw13.spring_replicate.ResponseType.Prediction.Prediction;
 import com.nilsw13.spring_replicate.ResponseType.Training.Training;
 import com.nilsw13.spring_replicate.ResponseType.webhook.WebhookEvent;
 import com.nilsw13.spring_replicate.api.ReplicateRestClient;
-import com.nilsw13.spring_replicate.service.Training.TrainingBuilderService;
+import com.nilsw13.spring_replicate.service.TrainingBuilderService;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;

@@ -5,11 +5,9 @@ import com.nilsw13.spring_replicate.ResponseType.Deployment.Deployment;
 import com.nilsw13.spring_replicate.ResponseType.Deployment.DeploymentConfiguration;
 import com.nilsw13.spring_replicate.ResponseType.Deployment.DeploymentList;
 import com.nilsw13.spring_replicate.api.ReplicateRestClient;
-import com.nilsw13.spring_replicate.service.Deployments.DeploymentService;
-import com.nilsw13.spring_replicate.service.prediction.PredictionBuilderService;
+import com.nilsw13.spring_replicate.service.DeploymentService;
+import com.nilsw13.spring_replicate.service.PredictionBuilderService;
 import org.springframework.stereotype.Service;
-
-import java.util.Map;
 
 @Service
 public class DeploymentServiceImpl implements DeploymentService {
