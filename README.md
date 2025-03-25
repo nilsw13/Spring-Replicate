@@ -39,9 +39,38 @@ Add the dependency to your `pom.xml` if you're using Maven:
 ```
 
 ## ⚡ Quick Start
-- 1 **First, configure your Replicate API token in application.properties**
+- 1 **Configure your Replicate API token in application.properties**
 ```properties
     replicate.api.token=your_replicate_api_token_here
+```
+- 2 **Usage Examples**
+```java
+// Run a Prediction
+private final Replicate replicate;
+
+public YourClassName(Replicate replicate) {
+    this.replicate = replicate;
+}
+public void generateImage() {
+    Prediction prediction = replicate.predictions()
+            .create("stability-ai/sdxl")
+            .input("prompt", "A cosmic landscape with vibrant nebulae")
+            .input("negative_prompt", "blurry, distorted")
+            .execute();
+
+    System.out.println("Prediction ID: " + prediction.getId());
+    System.out.println("Status: " + prediction.getStatus());
+    System.out.println("Output: " + prediction.getOutput());
+}
+```
+
+
+```java
+    // List models
+    ModelList models = replicate.models().list();
+    models.getResults().forEach(model -> {
+    System.out.println(model.getOwner() + "/" + model.getName());
+    });
 ```
 
 
