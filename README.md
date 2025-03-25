@@ -11,17 +11,24 @@ A Spring Boot client for interacting with the [Replicate API](https://replicate.
 
 ## Coming Soon! 🚀
 
-This library is currently in active development. Stay tuned for the first release, which will include:
+A comprehensive Spring Boot client for interacting with the [Replicate API](https://replicate.com/). This library provides a convenient way to manage and interact with Replicate services in Java.
+This library is currently in active development. Stay tuned for the first release.
 
-- Full support for account management and webhook operations.
-- Detailed documentation and usage examples.
-- Comprehensive test coverage.
 
----
+## Features
+
+- 🏃‍♂️ **Run Models**: Execute predictions with any model available on Replicate
+- 🤖 **Model Management**: Create, list, update, and delete models
+- 🔄 **Versions**: Get information about model versions and their capabilities
+- 📊 **Deployments**: Create and manage model deployments for production use
+- 🎓 **Training**: Fine-tune models with your own data
+- 📚 **Collections**: Browse curated model collections
+- 🔒 **Authentication**: Built-in token authentication support
+- 🪝 **Webhooks**: Configure webhooks for event notifications
 
 ## Installation
 
-Once released, you'll be able to add the dependency to your `pom.xml` if you're using Maven:
+Add the dependency to your `pom.xml` if you're using Maven:
 
 ```xml
 <dependency>
@@ -30,6 +37,14 @@ Once released, you'll be able to add the dependency to your `pom.xml` if you're 
     <version>1.0.0</version>
 </dependency>
 ```
+
+## ⚡ Quick Start
+- 1 **First, configure your Replicate API token in application.properties**
+```properties
+    replicate.api.token=your_replicate_api_token_here
+```
+
+
 
 
 
