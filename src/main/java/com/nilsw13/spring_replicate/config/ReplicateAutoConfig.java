@@ -2,6 +2,7 @@ package com.nilsw13.spring_replicate.config;
 
 import com.nilsw13.spring_replicate.impl.*;
 import com.nilsw13.spring_replicate.service.Deployments.DeploymentService;
+import com.nilsw13.spring_replicate.service.Hardware.HardwareService;
 import com.nilsw13.spring_replicate.service.Model.ModelService;
 import com.nilsw13.spring_replicate.service.Replicate.Replicate;
 import com.nilsw13.spring_replicate.api.ReplicateRestClient;
@@ -73,6 +74,12 @@ public class ReplicateAutoConfig {
         return  new TrainingServiceImpl(replicateRestClient);
     }
 
+    @Bean
+    @ConditionalOnMissingBean
+    public HardwareService hardwareService(ReplicateRestClient replicateRestClient) {
+        return new HardwareServiceImpl(replicateRestClient);
+    }
+
 
 
 
@@ -80,8 +87,20 @@ public class ReplicateAutoConfig {
     @ConditionalOnMissingBean
     public Replicate replicate(AccountService accountService,
                                SecretSigningWebhookService secretSigningWebhookService,
-                               PredictionService predictionService, ModelService modelService, CollectionService collectionService, DeploymentService deploymentService, TrainingService trainingService) {
-        return new ReplicateService(accountService, secretSigningWebhookService, predictionService, modelService, collectionService, deploymentService, trainingService);
+                               PredictionService predictionService,
+                               ModelService modelService,
+                               CollectionService collectionService,
+                               DeploymentService deploymentService,
+                               TrainingService trainingService,
+                               HardwareService hardwareService) {
+        return new ReplicateService(accountService,
+                secretSigningWebhookService,
+                predictionService,
+                modelService,
+                collectionService,
+                deploymentService,
+                trainingService,
+                hardwareService);
     }
 
 

@@ -2,6 +2,7 @@ package com.nilsw13.spring_replicate.service.Replicate;
 
 import com.nilsw13.spring_replicate.service.Account.AccountService;
 import com.nilsw13.spring_replicate.service.Deployments.DeploymentService;
+import com.nilsw13.spring_replicate.service.Hardware.HardwareService;
 import com.nilsw13.spring_replicate.service.Model.ModelService;
 import com.nilsw13.spring_replicate.service.SecretWebhook.SecretSigningWebhookService;
 import com.nilsw13.spring_replicate.service.Training.TrainingService;
@@ -17,8 +18,9 @@ public class ReplicateService implements Replicate {
     private final CollectionService collectionService;
     private final DeploymentService deploymentService;
     private final TrainingService trainingService;
+    private final HardwareService hardwareService;
 
-    public ReplicateService(AccountService accountService, SecretSigningWebhookService secretSigningWebhookService, PredictionService predictionService, ModelService modelService, CollectionService collectionService, DeploymentService deploymentService, TrainingService trainingService) {
+    public ReplicateService(AccountService accountService, SecretSigningWebhookService secretSigningWebhookService, PredictionService predictionService, ModelService modelService, CollectionService collectionService, DeploymentService deploymentService, TrainingService trainingService, HardwareService hardwareService) {
         this.accountService = accountService;
         this.secretSigningWebhookService = secretSigningWebhookService;
         this.predictionService = predictionService;
@@ -26,6 +28,7 @@ public class ReplicateService implements Replicate {
         this.collectionService = collectionService;
         this.deploymentService = deploymentService;
         this.trainingService = trainingService;
+        this.hardwareService = hardwareService;
     }
 
     @Override
@@ -58,6 +61,11 @@ public class ReplicateService implements Replicate {
     @Override
     public TrainingService trainings() {
         return trainingService;
+    }
+
+    @Override
+    public HardwareService hardware() {
+        return hardwareService;
     }
 
     @Override
