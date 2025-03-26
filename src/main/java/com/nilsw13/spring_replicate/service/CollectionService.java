@@ -37,6 +37,7 @@ public interface CollectionService {
      *
      * @return A CollectionModelList containing the first page of collection results
      * @throws ReplicateApiException If the API request fails
+     * @see CollectionModelList
      */
     CollectionModelList list();
 
