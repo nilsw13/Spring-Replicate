@@ -11,6 +11,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+
+
+/**
+ * Implementation of the PredictionBuilderService for configuring and executing predictions.
+ *
+ * This class is designed to handle  direct model predictions (which require a model version)
+ * model based predictions,  deployment-based predictions (which don't require a version). The class provides specialized
+ * execution methods for each use case:
+ * - execute(): For direct predictions using the generic /predictions endpoint
+ * - executeFromModel(): For predictions using the /models/{owner}/{name}/predictions endpoint
+ * - executeFromDeployment(): For predictions using the /deployments/{owner}/{name}/predictions endpoint
+ *
+ * When using this class for deployment-based predictions, the modelVersion parameter can be null
+ * as it is not used in the deployment prediction flow.
+ */
 @Service
 public class PredictionBuilderServiceImpl implements PredictionBuilderService {
 
@@ -24,6 +39,14 @@ public class PredictionBuilderServiceImpl implements PredictionBuilderService {
     private String webhookUrl;
     private List<String> webhookEventFilter;
 
+    /**
+     * Constructs a PredictionBuilderServiceImpl instance.
+     *
+     * @param restClient The REST client for API communication
+     * @param modelVersion The model version (can be null when used for deployment predictions)
+     * @param modelOwner The owner of the model or deployment
+     * @param modelName The name of the model or deployment
+     */
     public PredictionBuilderServiceImpl(ReplicateRestClient restClient, String modelVersion, String modelOwner, String modelName) {
         this.restClient = restClient;
         this.modelVersion = modelVersion;

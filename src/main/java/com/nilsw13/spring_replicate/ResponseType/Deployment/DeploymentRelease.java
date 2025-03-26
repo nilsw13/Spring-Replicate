@@ -4,6 +4,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Map;
 
+
+/**
+ * Represents a specific release of a deployment in the Replicate API.
+ *
+ * A deployment release encapsulates the specific model version, configuration,
+ * and metadata for a point-in-time release of a deployment. Each time a deployment
+ * is updated, a new release is created with an incremented release number.
+ *
+ * This class contains details about the model version being deployed, when it was
+ * created, who created it, and the specific configuration parameters in effect.
+ *
+ * @author Nilsw13
+ * @since 1.0.0
+ */
 public class DeploymentRelease {
 
     private String number;

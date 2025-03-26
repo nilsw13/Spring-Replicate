@@ -5,6 +5,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigInteger;
 import java.util.Map;
 
+/**
+ * Represents a model in the Replicate platform.
+ *
+ * A model is a machine learning model that can be run via the Replicate API.
+ * This class holds the properties returned by the API when retrieving model information,
+ * including metadata such as the model owner, description, visibility settings, and usage statistics.
+ *
+ * Models contain versions, which represent specific trained instances of the model.
+ * The latest version is included in the model response for convenience.
+ *
+ * @author Nilsw13
+ * @since 1.0.0
+ * @see Version
+ */
 public class Model {
     private String id;
 

@@ -2,6 +2,22 @@ package com.nilsw13.spring_replicate.ResponseType.Deployment;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
+/**
+ * Represents a model deployment in the Replicate API.
+ *
+ * A deployment is a production-ready instance of a model that provides a stable
+ * endpoint for predictions with defined scaling and hardware configurations.
+ * This class encapsulates the core properties of a deployment including its
+ * ownership information and current configuration.
+ *
+ * Deployments provide consistent endpoints with predictable performance
+ * characteristics, making them suitable for production applications that
+ * require reliability and scaling capabilities.
+ *
+ * @author Nilsw13
+ * @since 1.0.0
+ */
 public class Deployment {
 
     private String owner;

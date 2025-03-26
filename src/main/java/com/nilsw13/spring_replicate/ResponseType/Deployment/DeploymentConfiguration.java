@@ -3,6 +3,21 @@ package com.nilsw13.spring_replicate.ResponseType.Deployment;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
+/**
+ * Configuration settings for creating or updating a deployment in the Replicate API.
+ *
+ * This class encapsulates the configurable properties of a deployment including
+ * the hardware type, scaling parameters, and the specific model version to deploy.
+ * It is used both when creating new deployments and when updating existing ones.
+ *
+ * The class is annotated with @JsonInclude(JsonInclude.Include.NON_NULL) to ensure
+ * that null properties are omitted from the JSON request body. This allows for
+ * partial updates where only the specified properties are changed.
+ *
+ * @author Nilsw13
+ * @since 1.0.0
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class DeploymentConfiguration {
     private String hardware;

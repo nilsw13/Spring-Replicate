@@ -68,12 +68,12 @@ public class DeploymentActionsTest extends BaseReplicateTest {
         System.out.println(response.getCurrentRelease().getModel());
     }
 
-//    @Test
-//    void createPredictionFromDeployment() throws InterruptedException {
-//        Prediction prediction = replicate.deployments().createDeploymentPrediction("nilsw13", "test-librairie-config")
-//                .input("prompt", "Hugh jackman at the beach")
-//                .executeFromDeployment(true, 60);
-//
-//        System.out.println(prediction.getUrls());
-//    }
+    @Test
+    void createPredictionFromDeployment() throws InterruptedException {
+        Prediction prediction = replicate.deployments().createDeploymentPrediction("nilsw13", "test-librairie-config")
+                .input("prompt", "Hugh jackman at the beach")
+                .executeFromDeployment(true, 60);
+
+        System.out.println(prediction.getUrls());
+    }
 }
