@@ -37,9 +37,9 @@ public interface Replicate {
      * Replicate to ensure the security of your webhook implementation.
      *
 
-     * @return A SecretSigningWebhookService for interacting with secret
+     * @return A WebhookService for interacting with secret
      */
-    SecretSigningWebhookService defaultSecretWebhook();
+    WebhookService webhook();
 
 
     /**

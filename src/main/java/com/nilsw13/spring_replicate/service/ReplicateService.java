@@ -18,7 +18,7 @@ package com.nilsw13.spring_replicate.service;
 public class ReplicateService implements Replicate {
 
     private final AccountService accountService;
-    private final SecretSigningWebhookService secretSigningWebhookService;
+    private final WebhookService webhookService;
     private final PredictionService predictionService;
     private final ModelService modelService;
     private final CollectionService collectionService;
@@ -35,7 +35,7 @@ public class ReplicateService implements Replicate {
      * injected automatically when using Spring Boot's auto-configuration.
      *
      * @param accountService Service for account operations
-     * @param secretSigningWebhookService Service for webhook signature verification
+     * @param webhookService Service for webhook signature verification
      * @param predictionService Service for prediction operations
      * @param modelService Service for model operations
      * @param collectionService Service for collection operations
@@ -44,9 +44,9 @@ public class ReplicateService implements Replicate {
      * @param hardwareService Service for hardware information
      */
 
-    public ReplicateService(AccountService accountService, SecretSigningWebhookService secretSigningWebhookService, PredictionService predictionService, ModelService modelService, CollectionService collectionService, DeploymentService deploymentService, TrainingService trainingService, HardwareService hardwareService) {
+    public ReplicateService(AccountService accountService, WebhookService webhookService, PredictionService predictionService, ModelService modelService, CollectionService collectionService, DeploymentService deploymentService, TrainingService trainingService, HardwareService hardwareService) {
         this.accountService = accountService;
-        this.secretSigningWebhookService = secretSigningWebhookService;
+        this.webhookService = webhookService;
         this.predictionService = predictionService;
         this.modelService = modelService;
         this.collectionService = collectionService;
@@ -68,8 +68,8 @@ public class ReplicateService implements Replicate {
      * {@inheritDoc}
      */
     @Override
-    public SecretSigningWebhookService defaultSecretWebhook() {
-        return secretSigningWebhookService;
+    public WebhookService webhook() {
+        return webhookService;
     }
 
 

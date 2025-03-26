@@ -4,6 +4,24 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Map;
 
+/**
+ * Represents a training job in the Replicate platform.
+ *
+ * A training job is a process that fine-tunes or trains a model with custom data.
+ * This class corresponds to the JSON structure returned by the Replicate API
+ * when creating, retrieving, or listing training jobs. It includes fields for
+ * tracking the lifecycle of a training job from creation through completion
+ * or error states, as well as inputs, outputs, and metrics.
+ *
+ * Training jobs typically go through several states during their lifecycle:
+ * - starting: The training is being prepared
+ * - processing: The training is running
+ * - succeeded: The training completed successfully
+ * - failed: The training encountered an error
+ *
+ * @author Nilsw13
+ * @since 1.0.0
+ */
 public class Training {
 
     @JsonProperty("completed_at")

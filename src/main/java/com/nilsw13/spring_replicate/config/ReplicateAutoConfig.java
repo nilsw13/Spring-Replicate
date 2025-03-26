@@ -1,17 +1,9 @@
 package com.nilsw13.spring_replicate.config;
 
 import com.nilsw13.spring_replicate.impl.*;
-import com.nilsw13.spring_replicate.service.DeploymentService;
-import com.nilsw13.spring_replicate.service.HardwareService;
-import com.nilsw13.spring_replicate.service.ModelService;
-import com.nilsw13.spring_replicate.service.Replicate;
+import com.nilsw13.spring_replicate.service.*;
 import com.nilsw13.spring_replicate.api.ReplicateRestClient;
-import com.nilsw13.spring_replicate.service.AccountService;
-import com.nilsw13.spring_replicate.service.TrainingService;
-import com.nilsw13.spring_replicate.service.CollectionService;
-import com.nilsw13.spring_replicate.service.PredictionService;
-import com.nilsw13.spring_replicate.service.ReplicateService;
-import com.nilsw13.spring_replicate.service.SecretSigningWebhookService;
+import com.nilsw13.spring_replicate.service.WebhookService;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -100,12 +92,12 @@ public class ReplicateAutoConfig {
      * Creates the webhook signing service for validating webhook requests.
      *
      * @param replicateRestClient The REST client for API communication
-     * @return An implementation of the SecretSigningWebhookService interface
+     * @return An implementation of the WebhookService interface
      */
     @Bean
     @ConditionalOnMissingBean
-    public SecretSigningWebhookService secretSigningWebhookService(ReplicateRestClient replicateRestClient) {
-        return new SecretSigningWebhookServiceImpl(replicateRestClient);
+    public WebhookService secretSigningWebhookService(ReplicateRestClient replicateRestClient) {
+        return new WebhookServiceImpl(replicateRestClient);
     }
 
 
@@ -191,7 +183,7 @@ public class ReplicateAutoConfig {
      * client. It aggregates all individual services into a cohesive API.
      *
      * @param accountService Service for account operations
-     * @param secretSigningWebhookService Service for webhook signature verification
+     * @param webhookService Service for webhook signature verification
      * @param predictionService Service for prediction operations
      * @param modelService Service for model operations
      * @param collectionService Service for collection operations
@@ -203,7 +195,7 @@ public class ReplicateAutoConfig {
     @Bean
     @ConditionalOnMissingBean
     public Replicate replicate(AccountService accountService,
-                               SecretSigningWebhookService secretSigningWebhookService,
+                               WebhookService webhookService,
                                PredictionService predictionService,
                                ModelService modelService,
                                CollectionService collectionService,
@@ -211,7 +203,7 @@ public class ReplicateAutoConfig {
                                TrainingService trainingService,
                                HardwareService hardwareService) {
         return new ReplicateService(accountService,
-                secretSigningWebhookService,
+                webhookService,
                 predictionService,
                 modelService,
                 collectionService,
