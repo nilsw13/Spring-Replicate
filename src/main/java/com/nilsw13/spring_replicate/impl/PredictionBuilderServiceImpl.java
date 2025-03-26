@@ -141,11 +141,10 @@ public class PredictionBuilderServiceImpl implements PredictionBuilderService {
 
         if (wait) {
             headers.put("Prefer", "wait=" + timeoutSeconds);
-            Prediction response = restClient.post("deployments/" + modelOwner + "/" + modelName + "/" + "predictions", requestBody, headers,  Prediction.class);
         }
 
-
-        return restClient.post("deployments/" + modelOwner + "/" + modelName + "/" + "predictions"  , requestBody, Prediction.class);
+        return restClient.post("deployments/" + modelOwner + "/" + modelName + "/predictions",
+                requestBody, headers, Prediction.class);
 
     }
 
@@ -187,11 +186,10 @@ public class PredictionBuilderServiceImpl implements PredictionBuilderService {
 
         if (wait) {
             headers.put("Prefer", "wait=" + timeoutSeconds);
-            Prediction response = restClient.post("models/" + modelOwner + "/" + modelName + "/" + "predictions", requestBody, headers,  Prediction.class);
         }
 
-
-        return restClient.post("models/" + modelOwner + "/" + modelName + "/" + "predictions"  , requestBody, Prediction.class);
+        return restClient.post("models/" + modelOwner + "/" + modelName + "/predictions",
+                requestBody, headers, Prediction.class);
 
     }
 
@@ -233,11 +231,9 @@ public class PredictionBuilderServiceImpl implements PredictionBuilderService {
 
 
         if (wait) {
-           headers.put("Prefer", "wait=" + timeoutSeconds);
-            Prediction response = restClient.post("predictions", requestBody, headers,  Prediction.class);
+            headers.put("Prefer", "wait=" + timeoutSeconds);
         }
 
-
-        return restClient.post("predictions" , requestBody, Prediction.class);
+        return restClient.post("predictions", requestBody, headers, Prediction.class);
     }
 }
