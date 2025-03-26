@@ -2,6 +2,21 @@ package com.nilsw13.spring_replicate.ResponseType.Prediction;
 
 import java.util.List;
 
+/**
+ * Represents a paginated list of predictions returned by the Replicate API.
+ *
+ * This class corresponds to the structure of the JSON response when listing predictions.
+ * It includes pagination information (previous and next page URLs) as well as
+ * the actual list of predictions in the current page.
+ *
+ * The pagination mechanism allows efficient retrieval of large sets of predictions
+ * by fetching them in smaller chunks or pages. The next and previous URLs can
+ * be used to navigate through these pages.
+ *
+ * @author Nilsw13
+ * @since 1.0.0
+ * @see Prediction
+ */
 public class PredictionsList {
     private String next;
     private String previous;

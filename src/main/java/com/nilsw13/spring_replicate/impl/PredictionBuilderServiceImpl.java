@@ -55,13 +55,25 @@ public class PredictionBuilderServiceImpl implements PredictionBuilderService {
     }
 
 
-
+    /**
+     * {@inheritDoc}
+     *
+     * This implementation adds the specified key-value pair to the inputs map
+     * that will be sent to the model during prediction execution.
+     */
     @Override
     public PredictionBuilderService input(String key, Object value) {
        inputs.put(key, value);
        return this;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * This implementation adds all entries from the specified map to the inputs map
+     * that will be sent to the model during prediction execution. If the provided
+     * map is null, no changes are made to the existing inputs.
+     */
     @Override
     public PredictionBuilderService inputs(Map<String, Object> inputs) {
         if(inputs != null ){
@@ -70,12 +82,24 @@ public class PredictionBuilderServiceImpl implements PredictionBuilderService {
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * This implementation sets the webhook URL that will receive notifications
+     * about prediction events.
+     */
     @Override
     public PredictionBuilderService webhook(String url) {
         this.webhookUrl = url;
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * This implementation sets the filter for webhook events, converting the
+     * WebhookEvent enum values to their string representations.
+     */
     @Override
     public PredictionBuilderService webhookEventFilter(List<WebhookEvent> events) {
         this.webhookEventFilter = events.stream()
@@ -84,6 +108,17 @@ public class PredictionBuilderServiceImpl implements PredictionBuilderService {
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * This implementation sends a POST request to the "/deployments/{owner}/{name}/predictions"
+     * endpoint with the configured inputs and webhook settings. If wait is true,
+     * it adds a Prefer header to make the request synchronous with the specified timeout.
+     *
+     * Note: There appears to be a bug in the implementation where the synchronous response
+     * is not being returned when wait is true. This should be fixed to return the response
+     * from the synchronous call.
+     */
     @Override
     public Prediction executeFromDeployment(boolean wait) throws InterruptedException {
         return executeFromDeployment(wait, wait ? 300 : 0);
@@ -103,7 +138,7 @@ public class PredictionBuilderServiceImpl implements PredictionBuilderService {
         }
 
 
-        // add Prefer header if wait is true
+
         if (wait) {
             headers.put("Prefer", "wait=" + timeoutSeconds);
             Prediction response = restClient.post("deployments/" + modelOwner + "/" + modelName + "/" + "predictions", requestBody, headers,  Prediction.class);
@@ -114,11 +149,28 @@ public class PredictionBuilderServiceImpl implements PredictionBuilderService {
 
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * This implementation calls the executeFromModel method with a default
+     * timeout of 300 seconds if wait is true, or 0 seconds if wait is false.
+     */
     @Override
     public Prediction executeFromModel(boolean wait) throws InterruptedException {
         return executeFromModel(wait, wait? 300 : 0);
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * This implementation sends a POST request to the "/models/{owner}/{name}/predictions"
+     * endpoint with the configured inputs and webhook settings. If wait is true,
+     * it adds a Prefer header to make the request synchronous with the specified timeout.
+     *
+     * Note: There appears to be a bug in the implementation where the synchronous response
+     * is not being returned when wait is true. This should be fixed to return the response
+     * from the synchronous call.
+     */
     @Override
     public Prediction executeFromModel(boolean wait, int timeoutSeconds) throws InterruptedException {
         Map<String, Object> requestBody = new HashMap<>();
@@ -133,7 +185,6 @@ public class PredictionBuilderServiceImpl implements PredictionBuilderService {
         }
 
 
-        // add Prefer header if wait is true
         if (wait) {
             headers.put("Prefer", "wait=" + timeoutSeconds);
             Prediction response = restClient.post("models/" + modelOwner + "/" + modelName + "/" + "predictions", requestBody, headers,  Prediction.class);
@@ -144,13 +195,28 @@ public class PredictionBuilderServiceImpl implements PredictionBuilderService {
 
     }
 
-
+    /**
+     * {@inheritDoc}
+     *
+     * This implementation calls the execute method with a default
+     * timeout of 300 seconds if wait is true, or 0 seconds if wait is false.
+     */
     @Override
     public Prediction execute(boolean wait) throws InterruptedException {
         return execute(wait, wait? 300 :0);
     }
 
-
+    /**
+     * {@inheritDoc}
+     *
+     * This implementation sends a POST request to the "/predictions" endpoint
+     * with the configured inputs, model version, and webhook settings. If wait is true,
+     * it adds a Prefer header to make the request synchronous with the specified timeout.
+     *
+     * Note: There appears to be a bug in the implementation where the synchronous response
+     * is not being returned when wait is true. This should be fixed to return the response
+     * from the synchronous call.
+     */
     @Override
     public Prediction execute(boolean wait, int timeoutSeconds) throws InterruptedException {
         Map<String, Object> requestBody = new HashMap<>();
@@ -166,7 +232,6 @@ public class PredictionBuilderServiceImpl implements PredictionBuilderService {
         }
 
 
-        // add Prefer header if wait is true
         if (wait) {
            headers.put("Prefer", "wait=" + timeoutSeconds);
             Prediction response = restClient.post("predictions", requestBody, headers,  Prediction.class);
