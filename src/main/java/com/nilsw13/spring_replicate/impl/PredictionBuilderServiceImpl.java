@@ -3,8 +3,14 @@ package com.nilsw13.spring_replicate.impl;
 import com.nilsw13.spring_replicate.ResponseType.webhook.WebhookEvent;
 import com.nilsw13.spring_replicate.api.ReplicateRestClient;
 import com.nilsw13.spring_replicate.ResponseType.Prediction.Prediction;
+
+import com.nilsw13.spring_replicate.service.FileUtilsService;
 import com.nilsw13.spring_replicate.service.PredictionBuilderService;
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.stereotype.Service;
+
+import java.io.File;
+import java.io.IOException;
 
 import java.util.HashMap;
 import java.util.List;
@@ -39,6 +45,8 @@ public class PredictionBuilderServiceImpl implements PredictionBuilderService {
     private String webhookUrl;
     private List<String> webhookEventFilter;
 
+
+
     /**
      * Constructs a PredictionBuilderServiceImpl instance.
      *
@@ -52,8 +60,54 @@ public class PredictionBuilderServiceImpl implements PredictionBuilderService {
         this.modelVersion = modelVersion;
         this.modelOwner = modelOwner;
         this.modelName = modelName;
+
     }
 
+
+    /**
+     * {@inheritDoc}
+     *
+     * This implementation converts the file to a data URL and adds it to the
+     * inputs map that will be sent to the model during prediction execution.
+     * Data URLs are suitable for files smaller than 256KB. For larger files,
+     * consider hosting them externally and using their HTTP URL instead.
+     *
+     * @param key The name of the input parameter
+     * @param file The file to upload
+     * @return This builder instance for method chaining
+     * @throws IOException If an error occurs while reading or encoding the file
+     * @see FileUtilsService#fileToDataUrl(File)
+     */
+    @Override
+    public PredictionBuilderService file(String key, File file) throws IOException {
+     String dataUrl = FileUtilsService.fileToDataUrl(file);
+     inputs.put(key, dataUrl);
+       return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * This implementation converts the image file to a data URL with the appropriate
+     * MIME type and adds it to the inputs map that will be sent to the model during
+     * prediction execution. This method is optimized for image files and ensures the
+     * correct image format is detected.
+     *
+     * Data URLs are suitable for images smaller than 256KB. For larger images,
+     * consider hosting them externally and using their HTTP URL instead.
+     *
+     * @param key The name of the input parameter
+     * @param imageFile The image file to upload
+     * @return This builder instance for method chaining
+     * @throws IOException If an error occurs while reading or encoding the image file
+     * @see FileUtilsService#imageToDataUrl(File)
+     */
+    @Override
+    public PredictionBuilderService image(String key, File imageFile) throws IOException {
+        String dataUrl = FileUtilsService.imageToDataUrl(imageFile);
+        inputs.put(key, dataUrl);
+        return this;
+    }
 
     /**
      * {@inheritDoc}
@@ -128,6 +182,7 @@ public class PredictionBuilderServiceImpl implements PredictionBuilderService {
     public Prediction executeFromDeployment(boolean wait, int timeoutSeconds) throws InterruptedException {
         Map<String, Object> requestBody = new HashMap<>();
         Map<String, String> headers = new HashMap<>();
+
         requestBody.put("input", inputs);
 
         if (webhookUrl != null && !webhookUrl.isEmpty()){
@@ -220,7 +275,9 @@ public class PredictionBuilderServiceImpl implements PredictionBuilderService {
         Map<String, Object> requestBody = new HashMap<>();
         Map<String, String> headers = new HashMap<>();
         requestBody.put("version", modelVersion);
+        System.out.println(inputs);
         requestBody.put("input", inputs);
+        System.out.println(inputs);
 
         if (webhookUrl != null && !webhookUrl.isEmpty()){
             requestBody.put("webhook", webhookUrl);

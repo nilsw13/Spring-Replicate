@@ -3,6 +3,8 @@ package com.nilsw13.spring_replicate.service;
 import com.nilsw13.spring_replicate.ResponseType.Prediction.Prediction;
 import com.nilsw13.spring_replicate.ResponseType.webhook.WebhookEvent;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -27,6 +29,50 @@ import java.util.Map;
  */
 public interface PredictionBuilderService {
 
+
+
+    /**
+     * Sets a file input parameter for the prediction using a data URL encoding.
+     *
+     * This method reads the provided file, converts it to a data URL format
+     * (base64-encoded with appropriate MIME type), and adds it to the prediction inputs.
+     * This approach is suitable for smaller files (generally under 256KB).
+     *
+     * For larger files, consider hosting them externally and providing their URL
+     * using the standard input() method instead.
+     *
+     * @param key The name of the input parameter
+     * @param file The file to be encoded and included in the prediction
+     * @return This builder instance for method chaining
+     * @throws IOException If the file cannot be read or an error occurs during encoding
+     */
+    PredictionBuilderService file(String key, File file)throws IOException;
+
+
+
+    /**
+     * Sets an image input parameter for the prediction using a data URL encoding.
+     *
+     * This method is specifically optimized for image files. It reads the provided image,
+     * automatically detects its format (JPEG, PNG, etc.), converts it to an appropriate
+     * data URL format, and adds it to the prediction inputs.
+     *
+     * This approach is suitable for smaller images (generally under 256KB). For larger
+     * images, consider hosting them externally and providing their URL using the
+     * standard input() method instead.
+     *
+     * Many vision models in Replicate require image inputs in specific formats.
+     * This method ensures proper formatting of the image data for compatibility
+     * with such models.
+     *
+     * @param key The name of the input parameter
+     * @param imageFile The image file to be encoded and included in the prediction
+     * @return This builder instance for method chaining
+     * @throws IOException If the image cannot be read or an error occurs during encoding
+     */
+    PredictionBuilderService image(String key, File imageFile) throws IOException;
+
+
     /**
      * Sets a single input parameter for the prediction.
      *
@@ -48,6 +94,9 @@ public interface PredictionBuilderService {
      * @param inputs A map of input parameter names to their values
      * @return This builder instance for method chaining
      */
+
+
+
     PredictionBuilderService inputs(Map<String, Object> inputs);
 
 
