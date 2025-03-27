@@ -5,6 +5,9 @@ import com.nilsw13.spring_replicate.ResponseType.Prediction.PredictionsList;
 import com.nilsw13.spring_replicate.integration.BaseReplicateTest;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+import java.io.IOException;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PredictionActionsTest extends BaseReplicateTest {
@@ -43,9 +46,12 @@ public class PredictionActionsTest extends BaseReplicateTest {
     }
 
     @Test
-    void testPredictionWithoutWaiting() throws InterruptedException {
-        String modelVersion = "ideogram-ai/ideogram-v2a";
+    void testPredictionWithoutWaiting() throws InterruptedException, IOException {
+        File testImage = new File("src/test/resources/computer.png");
+
+        String modelVersion = "anthropic/claude-3.7-sonnet";
         Prediction response = replicate.predictions().create(modelVersion)
+                .image("image", testImage)
                 .input("prompt", "an beautiful contact section icon")
                 .execute(false);
 
@@ -53,6 +59,7 @@ public class PredictionActionsTest extends BaseReplicateTest {
         assertThat(response.getId()).isNotNull();
         System.out.println("Created at : " + response.getCreatedAt());
         System.out.println("prediction id : " + response.getId());
+        System.out.println("prediction id : " + response.getInput());
     }
 
 }

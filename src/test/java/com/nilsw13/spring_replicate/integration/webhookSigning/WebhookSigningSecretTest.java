@@ -12,7 +12,7 @@ public class WebhookSigningSecretTest extends BaseReplicateTest {
 
     @Test
     void testWebhookSecretSigning() {
-        SigningSecretDefaultWebhook signingWebhookResponse = replicate.defaultSecretWebhook().getDefaultSecretSigningWebhook();
+        SigningSecretDefaultWebhook signingWebhookResponse = replicate.webhook().getDefaultSecretSigningWebhook();
 
         assertThat(signingWebhookResponse).isNotNull();
         assertThat(signingWebhookResponse.getKey()).isNotEmpty();
