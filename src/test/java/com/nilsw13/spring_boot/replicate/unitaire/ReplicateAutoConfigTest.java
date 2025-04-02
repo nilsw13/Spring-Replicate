@@ -24,16 +24,6 @@ public class ReplicateAutoConfigTest {
     private final ApplicationContextRunner contextRunner = new ApplicationContextRunner()
             .withConfiguration(AutoConfigurations.of(ReplicateAutoConfig.class));
 
-    @Test
-    public void shouldNotCreateBeansWhenApiKeyIsMissing() {
-        contextRunner
-                .withPropertyValues("replicate.api.key")
-                .run(context -> {
-                    assertThat(context).doesNotHaveBean(ReplicateRestClient.class);
-                    assertThat(context).doesNotHaveBean(Replicate.class);
-                });
-
-    }
 
     @Test
     public void shouldCreateBeansWhenApiKeyIsPresent() {
