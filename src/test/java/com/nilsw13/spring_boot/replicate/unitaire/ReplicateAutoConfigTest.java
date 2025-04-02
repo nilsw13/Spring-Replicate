@@ -27,11 +27,12 @@ public class ReplicateAutoConfigTest {
     @Test
     public void shouldNotCreateBeansWhenApiKeyIsMissing() {
         contextRunner
-                .withPropertyValues("replicate.api.key=") // Définir explicitement une clé vide
+                .withPropertyValues("replicate.api.key")
                 .run(context -> {
                     assertThat(context).doesNotHaveBean(ReplicateRestClient.class);
                     assertThat(context).doesNotHaveBean(Replicate.class);
                 });
+
     }
 
     @Test
