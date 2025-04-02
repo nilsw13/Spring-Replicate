@@ -15,8 +15,8 @@ import static org.assertj.core.api.Fail.fail;
 @Tag("integration-test")
 public class ModelActionsTest extends BaseReplicateTest {
 
-    private static final String modelTest = "linkedin_flux_01";
-    private static final String modelToCreate = "modeltest-" + System.currentTimeMillis();
+    private static final String MODEL_TEST = "linkedin_flux_01";
+    private static final String MODEL_TO_CREATE  = "modeltest-" + System.currentTimeMillis();
 
     @Test
     void ModelGetListTest() {
@@ -39,8 +39,7 @@ public class ModelActionsTest extends BaseReplicateTest {
     @Test
     void getModelVersionsList() {
         String owner = "nilsw13";
-        String modelName = "linkedin_flux_01";
-        ModelVersionList response = replicate.models().listModelVersions(owner, modelName);
+        ModelVersionList response = replicate.models().listModelVersions(owner, MODEL_TEST);
         assertThat(response).isNotNull();
         assertThat(response.getResults()).isNotNull();
         assertThat(response.getResults().get(0).getId()).isNotNull();
@@ -71,28 +70,28 @@ public class ModelActionsTest extends BaseReplicateTest {
     }
 
 
-    @Test void deleteModelTest() throws InterruptedException {
+    @Test void deleteModelTest() {
 
         Model model = new Model();
-        model.setName(modelToCreate);
+        model.setName(MODEL_TO_CREATE);
         model.setOwner("nilsw13");
         model.setHardware("cpu");
         model.setVisibility("private");
-        System.out.println("modelToCreate : " + modelToCreate + "/" + " " + "modelName : " + model.getName());
+        System.out.println("modelToCreate : " + MODEL_TO_CREATE + "/" + " " + "modelName : " + model.getName());
         Model preResponse = replicate.models().create(model);
         assertThat(preResponse).isNotNull();
-        Thread.sleep(3000);
+
 
         String owner = "nilsw13";
 
 
-        Model response = replicate.models().delete(owner, modelToCreate);
+        Model response = replicate.models().delete(owner, MODEL_TO_CREATE);
 
 
         assertThat(response).isNull();
 
         try {
-            Model model1 = replicate.models().get(owner, modelToCreate);
+           replicate.models().get(owner, MODEL_TO_CREATE);
             fail("Model still exists");
         } catch (ReplicateApiException e) {
             assertThat(e.getResponseBody()).contains("This model has been deleted");
@@ -108,7 +107,6 @@ public class ModelActionsTest extends BaseReplicateTest {
                 .input("prompt", "Write a short poem about the weather")
                 .executeFromModel(true, 60);
 
-        Thread.sleep(3000);
 
         assertThat(prediction.getId()).isNotNull();
 

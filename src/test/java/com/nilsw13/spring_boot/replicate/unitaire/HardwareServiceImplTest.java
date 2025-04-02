@@ -21,7 +21,7 @@ public class HardwareServiceImplTest {
     @Mock
     private ReplicateRestClient mockReplicateRestClient;
 
-    private HardwareService hardwareService;
+     HardwareService hardwareService;
 
     @BeforeEach
     public void setUp() {

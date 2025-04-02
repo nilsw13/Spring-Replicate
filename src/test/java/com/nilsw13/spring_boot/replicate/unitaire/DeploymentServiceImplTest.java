@@ -30,7 +30,7 @@ public class DeploymentServiceImplTest {
     @Mock
     private ReplicateRestClient mockitoRestClient;
 
-    private DeploymentService deploymentService;
+     DeploymentService deploymentService;
 
     @BeforeEach
     public void setUp() {

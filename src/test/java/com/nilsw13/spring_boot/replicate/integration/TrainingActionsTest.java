@@ -43,7 +43,6 @@ public class TrainingActionsTest extends BaseReplicateTest {
 
 
 
-        Thread.sleep(6000);
         assertThat(training.getId()).isNotNull();
         assertThat(training.getModel()).isEqualTo("ostris/flux-dev-lora-trainer");
         System.out.println(training.getStartedAt());
@@ -73,7 +72,6 @@ public class TrainingActionsTest extends BaseReplicateTest {
         System.out.println(training);
 
 
-        Thread.sleep(6000);
         assertThat(training.getModel()).isEqualTo("ostris/flux-dev-lora-trainer");
         System.out.println(training.getStartedAt());
 

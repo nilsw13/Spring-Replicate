@@ -32,6 +32,8 @@ public class ModelServiceImpl implements ModelService {
 
     private final ReplicateRestClient replicateRestClient;
     private String modelVersion;
+    private static final String ENDPOINT_MODELS = "models/";
+
 
 
     /**
@@ -86,7 +88,7 @@ public class ModelServiceImpl implements ModelService {
      */
     @Override
     public Model get(String modelOwner, String modelName) {
-        return replicateRestClient.get("models/" + modelOwner + "/" + modelName , Model.class);
+        return replicateRestClient.get(ENDPOINT_MODELS + modelOwner + "/" + modelName , Model.class);
     }
 
 
@@ -100,7 +102,7 @@ public class ModelServiceImpl implements ModelService {
      */
     @Override
     public Model delete(String modelOwner, String modelName) {
-        return replicateRestClient.delete("models/" + modelOwner + "/" + modelName, Model.class );
+        return replicateRestClient.delete(ENDPOINT_MODELS + modelOwner + "/" + modelName, Model.class );
     }
 
     /**
@@ -127,7 +129,7 @@ public class ModelServiceImpl implements ModelService {
      */
     @Override
     public ModelVersionList listModelVersions(String modelOwner, String modelName) {
-        return replicateRestClient.get("models/" + modelOwner + "/" + modelName + "/" +"versions", ModelVersionList.class);
+        return replicateRestClient.get(ENDPOINT_MODELS + modelOwner + "/" + modelName + "/" +"versions", ModelVersionList.class);
     }
 
 
@@ -141,7 +143,7 @@ public class ModelServiceImpl implements ModelService {
      */
     @Override
     public Version getModelVersion(String modelOwner, String modelName, String versionId) {
-        return replicateRestClient.get("models/" + modelOwner + "/" + modelName + "/"  + "versions/"  + versionId, Version.class);
+        return replicateRestClient.get(ENDPOINT_MODELS + modelOwner + "/" + modelName + "/"  + "versions/"  + versionId, Version.class);
     }
 
     /**
@@ -154,7 +156,7 @@ public class ModelServiceImpl implements ModelService {
      */
     @Override
     public Version deleteModelVersion(String modelOwner, String modelName, String versionId) {
-        return replicateRestClient.delete("models/" + modelOwner + "/" + modelName + "/"  + "versions/" + versionId, Version.class);
+        return replicateRestClient.delete(ENDPOINT_MODELS + modelOwner + "/" + modelName + "/"  + "versions/" + versionId, Version.class);
     }
 
     /**
@@ -165,6 +167,6 @@ public class ModelServiceImpl implements ModelService {
      */
     @Override
     public String getModelReadme(String modelOwner, String modelName) {
-        return replicateRestClient.get("models/" + modelOwner + "/" + modelName + "/" + "readme", String.class);
+        return replicateRestClient.get(ENDPOINT_MODELS + modelOwner + "/" + modelName + "/" + "readme", String.class);
     }
 }

@@ -22,7 +22,7 @@ public class TrainingServiceImplTest {
     @Mock
     private ReplicateRestClient mockRestClient;
 
-    private TrainingService trainingService;
+     TrainingService trainingService;
 
     @BeforeEach
     public void setUp() {

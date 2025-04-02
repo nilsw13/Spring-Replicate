@@ -76,7 +76,7 @@ public class DeploymentActionsTest extends BaseReplicateTest {
 
 
     @Test
-    void createDeploymentTest() throws InterruptedException {
+    void createDeploymentTest() {
 
 
 
@@ -90,7 +90,6 @@ public class DeploymentActionsTest extends BaseReplicateTest {
 
 
         Deployment response = replicate.deployments().create(config);
-        Thread.sleep(3000);
         assertThat(response).isNotNull();
     }
 

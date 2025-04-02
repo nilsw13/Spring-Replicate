@@ -23,7 +23,7 @@ public class AccountServiceImplTest {
     @Mock
     private ReplicateRestClient mockRestClient;
 
-    private AccountServiceImpl accountService;
+     AccountServiceImpl accountService;
 
     @BeforeEach
     public void setUp() {

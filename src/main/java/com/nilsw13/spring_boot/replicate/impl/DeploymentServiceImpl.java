@@ -33,6 +33,8 @@ public class DeploymentServiceImpl implements DeploymentService {
 
     private final ReplicateRestClient replicateRestClient;
     private String modelVersion;
+    private static final String ENDPOINT_DEPLOYMENTS = "deployments/";
+
 
 
     /**
@@ -93,7 +95,7 @@ public class DeploymentServiceImpl implements DeploymentService {
      */
     @Override
     public Deployment get(String deploymentOwner, String deploymentName) {
-        return replicateRestClient.get("deployments/" + deploymentOwner + "/" + deploymentName, Deployment.class);
+        return replicateRestClient.get(ENDPOINT_DEPLOYMENTS + deploymentOwner + "/" + deploymentName, Deployment.class);
     }
 
     /**
@@ -124,7 +126,7 @@ public class DeploymentServiceImpl implements DeploymentService {
      */
     @Override
     public DeploymentConfiguration update(String owner, String name, DeploymentConfiguration changes) {
-        return replicateRestClient.patch("deployments/" + owner + "/" + name, changes, DeploymentConfiguration.class);
+        return replicateRestClient.patch(ENDPOINT_DEPLOYMENTS+ owner + "/" + name, changes, DeploymentConfiguration.class);
     }
 
     /**
@@ -141,6 +143,6 @@ public class DeploymentServiceImpl implements DeploymentService {
      */
     @Override
     public Deployment delete(String owner, String name) {
-        return replicateRestClient.delete("deployments/" + owner + "/" + name, Deployment.class );
+        return replicateRestClient.delete(ENDPOINT_DEPLOYMENTS + owner + "/" + name, Deployment.class );
     }
 }

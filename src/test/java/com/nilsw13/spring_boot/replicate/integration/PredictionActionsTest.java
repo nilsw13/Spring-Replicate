@@ -100,8 +100,8 @@ public class PredictionActionsTest extends BaseReplicateTest {
 
 
         assertThat(response.getId()).isNotNull();
-        Prediction predictionDelete = replicate.predictions().cancel(response.getId());
-        Thread.sleep(3000);
+         replicate.predictions().cancel(response.getId());
+
         try {
             Prediction optPred = replicate.predictions().get(response.getId());
             assertThat(optPred.getStatus()).isEqualTo("canceled");
@@ -115,7 +115,7 @@ public class PredictionActionsTest extends BaseReplicateTest {
     @Test
     void testExecuteFromModelTest() throws InterruptedException, IOException {
         File testImage = new File("src/test/resources/computer.png");
-        File testFile = new File("src/test/resources/test.txt");
+
 
         Map<String , Object> inputs = new HashMap<>();
         inputs.put("prompt" , "a small poem About city of Marseille");
@@ -133,7 +133,7 @@ public class PredictionActionsTest extends BaseReplicateTest {
                 .webhookEventFilter(eventList)
                 .executeFromModel(true, 60);
 
-        Thread.sleep(3000);
+
 
         assertThat(prediction.getId()).isNotNull();
 

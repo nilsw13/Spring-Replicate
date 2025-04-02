@@ -69,8 +69,10 @@ public class ReplicateRestClientTest {
                 any(Class.class)
         )).thenThrow(mockException);
 
+        Object requestBody = new Object();
+
         ReplicateApiException exception = assertThrows(ReplicateApiException.class, () -> {
-            replicateRestClient.post("test-endpoint", new Object(), Object.class);
+            replicateRestClient.post("test-endpoint", requestBody, Object.class);
         });
 
         assertEquals(400, exception.getStatusCode());
@@ -95,8 +97,10 @@ public class ReplicateRestClientTest {
                 any(Class.class)
         )).thenThrow(mockException);
 
+        Object requestBody = new Object();
+
         ReplicateApiException exception = assertThrows(ReplicateApiException.class, () -> {
-            replicateRestClient.post("test-endpoint", new Object(), headers, Object.class);
+            replicateRestClient.post("test-endpoint", requestBody, headers, Object.class);
         });
 
         assertEquals(400, exception.getStatusCode());
@@ -142,7 +146,8 @@ public class ReplicateRestClientTest {
         )).thenThrow(mockException);
 
         ReplicateApiException exception = assertThrows(ReplicateApiException.class, () -> {
-            replicateRestClient.patch("test-endpoint", new DeploymentConfiguration(), Object.class);
+            DeploymentConfiguration config = new DeploymentConfiguration();
+            replicateRestClient.patch("test-endpoint", config, Object.class);
         });
 
         assertEquals(400, exception.getStatusCode());

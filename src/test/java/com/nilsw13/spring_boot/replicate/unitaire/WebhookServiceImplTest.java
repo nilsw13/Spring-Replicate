@@ -18,7 +18,7 @@ public class WebhookServiceImplTest {
 
     @Mock
     private ReplicateRestClient mockRestClient;
-    private  WebhookService webhookService;
+    WebhookService webhookService;
 
     @BeforeEach
     public void setUp() {

@@ -23,7 +23,7 @@ public class CollectionServiceImplTest {
     @Mock
     private ReplicateRestClient mockRestClient;
 
-    private CollectionServiceImpl collectionService;
+     CollectionServiceImpl collectionService;
 
     @BeforeEach
     public void setUp() {

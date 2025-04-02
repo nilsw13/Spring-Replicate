@@ -22,6 +22,20 @@ public class PredictionsList {
     private String previous;
     private List<Prediction> results;
 
+    /**
+     * Default constructor for PredictionList class.
+     *
+     * This empty constructor exists for the following reasons:
+     * 1. Required by JSON/Jackson deserialization process when mapping API responses
+     * 2. Enables library users to instantiate response objects when needed
+     * 3. Supports serialization/deserialization in various client implementations
+     *
+     * Although empty, this constructor is essential for the proper functioning
+     * of the API client library and should not be removed.
+     */
+    public PredictionsList() {
+    }
+
     public String getNext() {
         return next;
     }
