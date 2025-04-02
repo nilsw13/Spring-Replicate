@@ -7,12 +7,10 @@ import com.nilsw13.spring_boot.replicate.ResponseType.Model.ModelVersionList;
 import com.nilsw13.spring_boot.replicate.ResponseType.Model.Version;
 import com.nilsw13.spring_boot.replicate.api.ReplicateRestClient;
 import com.nilsw13.spring_boot.replicate.config.ReplicateAutoConfig;
-import com.nilsw13.spring.boot.replicate.impl.*;
-import com.nilsw13.spring.boot.replicate.service.*;
+
 import com.nilsw13.spring_boot.replicate.impl.*;
 import com.nilsw13.spring_boot.replicate.service.*;
-import com.nilsw13.spring_replicate.impl.*;
-import com.nilsw13.spring_replicate.service.*;
+
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.autoconfigure.AutoConfigurations;

@@ -1,11 +1,9 @@
 package com.nilsw13.spring_boot.replicate.config;
 
-import com.nilsw13.spring.boot.replicate.impl.*;
-import com.nilsw13.spring.boot.replicate.service.*;
+
 import com.nilsw13.spring_boot.replicate.impl.*;
 import com.nilsw13.spring_boot.replicate.service.*;
-import com.nilsw13.spring_replicate.impl.*;
-import com.nilsw13.spring_replicate.service.*;
+
 import com.nilsw13.spring_boot.replicate.api.ReplicateRestClient;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
