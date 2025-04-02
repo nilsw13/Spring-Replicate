@@ -9,12 +9,15 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Modifier;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Base64;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
@@ -26,11 +29,17 @@ public class FileUtilsTest {
     Path tempDir;
 
     @Test
-    void constructorTest() {
-        FileUtils test = new FileUtils();
-        assertThat(test).isNotNull();
-    }
+    void constructor_ShouldBePrivateAndThrowException() throws Exception {
+        Constructor<FileUtils> constructor = FileUtils.class.getDeclaredConstructor();
+        assertThat(Modifier.isPrivate(constructor.getModifiers())).isTrue();
 
+        constructor.setAccessible(true);
+
+        Throwable thrown = catchThrowable(constructor::newInstance);
+        assertThat(thrown)
+                .isInstanceOf(InvocationTargetException.class)
+                .hasCauseInstanceOf(UnsupportedOperationException.class);
+    }
 
     @Test
     public void testFileToDataUrl() throws IOException {

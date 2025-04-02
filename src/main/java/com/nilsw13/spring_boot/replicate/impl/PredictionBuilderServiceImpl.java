@@ -4,7 +4,7 @@ import com.nilsw13.spring_boot.replicate.ResponseType.webhook.WebhookEvent;
 import com.nilsw13.spring_boot.replicate.api.ReplicateRestClient;
 import com.nilsw13.spring_boot.replicate.ResponseType.Prediction.Prediction;
 
-import com.nilsw13.spring_boot.replicate.service.FileUtilsService;
+import com.nilsw13.spring_boot.replicate.service.FileUtils;
 import com.nilsw13.spring_boot.replicate.service.PredictionBuilderService;
 import org.springframework.stereotype.Service;
 
@@ -80,11 +80,11 @@ public class PredictionBuilderServiceImpl implements PredictionBuilderService {
      * @param file The file to upload
      * @return This builder instance for method chaining
      * @throws IOException If an error occurs while reading or encoding the file
-     * @see FileUtilsService#fileToDataUrl(File)
+     * @see FileUtils#fileToDataUrl(File)
      */
     @Override
     public PredictionBuilderService file(String key, File file) throws IOException {
-     String dataUrl = FileUtilsService.fileToDataUrl(file);
+     String dataUrl = FileUtils.fileToDataUrl(file);
      inputs.put(key, dataUrl);
        return this;
     }
@@ -104,11 +104,11 @@ public class PredictionBuilderServiceImpl implements PredictionBuilderService {
      * @param imageFile The image file to upload
      * @return This builder instance for method chaining
      * @throws IOException If an error occurs while reading or encoding the image file
-     * @see FileUtilsService#imageToDataUrl(File)
+     * @see FileUtils#imageToDataUrl(File)
      */
     @Override
     public PredictionBuilderService image(String key, File imageFile) throws IOException {
-        String dataUrl = FileUtilsService.imageToDataUrl(imageFile);
+        String dataUrl = FileUtils.imageToDataUrl(imageFile);
         inputs.put(key, dataUrl);
         return this;
     }
@@ -278,9 +278,7 @@ public class PredictionBuilderServiceImpl implements PredictionBuilderService {
         Map<String, Object> requestBody = new HashMap<>();
         Map<String, String> headers = new HashMap<>();
         requestBody.put("version", modelVersion);
-        System.out.println(inputs);
         requestBody.put(INPUT, inputs);
-        System.out.println(inputs);
 
         if (webhookUrl != null && !webhookUrl.isEmpty()){
             requestBody.put(WEBHOOK, webhookUrl);
