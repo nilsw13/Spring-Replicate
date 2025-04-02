@@ -38,10 +38,14 @@ jobs:
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
 
+      - name: Run tests without API key
+        run: mvn test -Dtest=ReplicateAutoConfigTestWithoutApiKey
+
+
       - name: Build and run tests with JaCoCo
         env:
           REPLICATE_API_KEY: ${{ secrets.REPLICATE_API_KEY }}
-        run: mvn clean verify jacoco:report
+        run: mvn clean verify jacoco:report -Dtest=!ReplicateAutoConfigTestWithoutApiKey
 
       - name: SonarCloud Scan
         env:
