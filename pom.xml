@@ -29,7 +29,6 @@
     </properties>
 
     <dependencies>
-        <!-- WebFlux for reactive programming -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
