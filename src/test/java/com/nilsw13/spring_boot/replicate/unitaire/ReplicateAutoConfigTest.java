@@ -25,6 +25,7 @@ public class ReplicateAutoConfigTest {
             .withConfiguration(AutoConfigurations.of(ReplicateAutoConfig.class));
 
 
+
     @Test
     public void shouldCreateBeansWhenApiKeyIsPresent() {
         contextRunner
