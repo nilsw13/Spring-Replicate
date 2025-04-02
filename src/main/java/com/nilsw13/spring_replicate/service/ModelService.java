@@ -78,9 +78,8 @@ public interface ModelService {
     /**
      * Lists all models available to the authenticated user.
      *
-     * This method returns a paginated list of models available on Replicate.
-     * The list includes both public models and private models owned by or
-     * shared with the authenticated user.
+     * This method returns a paginated list of public models on Replicate.
+     * The list displays public models .
      *
      * @return A paginated list of models
      * @see ModelList

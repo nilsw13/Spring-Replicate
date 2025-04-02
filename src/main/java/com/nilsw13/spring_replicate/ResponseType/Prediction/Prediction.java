@@ -131,5 +131,61 @@ public class Prediction {
         return version;
     }
 
+    public void setDataRemoved(Boolean dataRemoved) {
+        this.dataRemoved = dataRemoved;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setInput(Map<String, Object> input) {
+        this.input = input;
+    }
+
+    public void setMetrics(Map<String, Double> metrics) {
+        this.metrics = metrics;
+    }
+
+    public void setOutput(Object output) {
+        this.output = output;
+    }
+
+    public void setCompletedAt(String completedAt) {
+        this.completedAt = completedAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public void setStartedAt(String startedAt) {
+        this.startedAt = startedAt;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setUrls(Map<String, String> urls) {
+        this.urls = urls;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
 
 }

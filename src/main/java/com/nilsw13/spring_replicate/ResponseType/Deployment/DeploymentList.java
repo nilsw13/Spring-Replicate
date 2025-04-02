@@ -18,6 +18,10 @@ public class DeploymentList {
     private String next;
     private List<Deployment> results;
 
+
+    public DeploymentList() {
+    }
+
     public String getPrevious() {
         return previous;
     }
@@ -28,5 +32,17 @@ public class DeploymentList {
 
     public List<Deployment> getResults() {
         return results;
+    }
+
+    public void setPrevious(String previous) {
+        this.previous = previous;
+    }
+
+    public void setNext(String next) {
+        this.next = next;
+    }
+
+    public void setResults(List<Deployment> results) {
+        this.results = results;
     }
 }

@@ -19,6 +19,9 @@ public class CollectionModel {
     private String slug;
     private String description;
 
+    public CollectionModel() {
+    }
+
     public String getName() {
         return name;
     }
@@ -29,6 +32,18 @@ public class CollectionModel {
 
     public String getDescription() {
         return description;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSlug(String slug) {
+        this.slug = slug;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override

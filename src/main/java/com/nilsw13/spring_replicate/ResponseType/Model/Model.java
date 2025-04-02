@@ -120,6 +120,42 @@ public class Model {
         return latestVersion;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public void setGithubUrl(String githubUrl) {
+        this.githubUrl = githubUrl;
+    }
+
+    public void setPaperUrl(String paperUrl) {
+        this.paperUrl = paperUrl;
+    }
+
+    public void setLicenseUrl(String licenseUrl) {
+        this.licenseUrl = licenseUrl;
+    }
+
+    public void setRunCount(BigInteger runCount) {
+        this.runCount = runCount;
+    }
+
+    public void setCoverImageUrl(String coverImageUrl) {
+        this.coverImageUrl = coverImageUrl;
+    }
+
+    public void setDefaultExample(Map<String, Object> defaultExample) {
+        this.defaultExample = defaultExample;
+    }
+
+    public void setLatestVersion(Map<String, Object> latestVersion) {
+        this.latestVersion = latestVersion;
+    }
+
     @Override
     public String toString() {
         return "Model{" +

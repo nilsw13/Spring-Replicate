@@ -23,6 +23,7 @@ public class ModelList {
     private String next;
     private List<Model> results;
 
+
     public ModelList() {
     }
 
@@ -36,5 +37,17 @@ public class ModelList {
 
     public List<Model> getResults() {
         return results;
+    }
+
+    public void setPrevious(String previous) {
+        this.previous = previous;
+    }
+
+    public void setNext(String next) {
+        this.next = next;
+    }
+
+    public void setResults(List<Model> results) {
+        this.results = results;
     }
 }

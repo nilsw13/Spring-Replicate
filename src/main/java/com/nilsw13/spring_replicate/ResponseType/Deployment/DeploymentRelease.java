@@ -20,6 +20,7 @@ import java.util.Map;
  */
 public class DeploymentRelease {
 
+
     private String number;
     private String model;
     private String version;
@@ -31,6 +32,33 @@ public class DeploymentRelease {
     private Map<String, String> createdBy;
 
     private DeploymentConfiguration configuration;
+
+    public DeploymentRelease() {
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public void setCreatedBy(Map<String, String> createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public void setConfiguration(DeploymentConfiguration configuration) {
+        this.configuration = configuration;
+    }
 
     public String getNumber() {
         return number;

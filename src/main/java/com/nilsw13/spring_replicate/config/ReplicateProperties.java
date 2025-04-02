@@ -36,6 +36,7 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "replicate")
 public class ReplicateProperties {
 
+
     private String apiKey;
     private String apiUrl = "https://api.replicate.com/v1";
 

@@ -43,6 +43,22 @@ public class Version {
         return openapiSchema;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public void setCogVersion(String cogVersion) {
+        this.cogVersion = cogVersion;
+    }
+
+    public void setOpenapiSchema(Map<String, Object> openapiSchema) {
+        this.openapiSchema = openapiSchema;
+    }
+
     @Override
     public String toString() {
         return "Version{" +

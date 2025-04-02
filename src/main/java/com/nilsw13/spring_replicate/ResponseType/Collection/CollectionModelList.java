@@ -25,6 +25,9 @@ public class CollectionModelList {
     private String previous;
     List<CollectionModel> results;
 
+    public CollectionModelList() {
+    }
+
     public String getNext() {
         return next;
     }
@@ -35,5 +38,17 @@ public class CollectionModelList {
 
     public List<CollectionModel> getResults() {
         return results;
+    }
+
+    public void setResults(List<CollectionModel> results) {
+        this.results = results;
+    }
+
+    public void setPrevious(String previous) {
+        this.previous = previous;
+    }
+
+    public void setNext(String next) {
+        this.next = next;
     }
 }

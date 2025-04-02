@@ -29,6 +29,23 @@ public class Hardware {
     private String name;
     private String sku;
 
+
+    public Hardware(String name, String sku) {
+        this.name = name;
+        this.sku = sku;
+    }
+
+    public Hardware() {
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSku(String sku) {
+        this.sku = sku;
+    }
+
     public String getName() {
         return name;
     }
@@ -44,4 +61,6 @@ public class Hardware {
                 ", sku='" + sku + '\'' +
                 '}';
     }
+
+
 }

@@ -92,6 +92,59 @@ public class Training {
     public String getVersion() {
         return version;
     }
+
+    public void setCompletedAt(String completedAt) {
+        this.completedAt = completedAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setInput(Map<String, String> input) {
+        this.input = input;
+    }
+
+    public void setLogs(String logs) {
+        this.logs = logs;
+    }
+
+    public void setMetrics(Map<String, Double> metrics) {
+        this.metrics = metrics;
+    }
+
+    public void setOutput(Map<String, String> output) {
+        this.output = output;
+    }
+
+    public void setStartedAt(String startedAt) {
+        this.startedAt = startedAt;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setUrls(Map<String, String> urls) {
+        this.urls = urls;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
     @Override
     public String toString() {
         return "Training{" +

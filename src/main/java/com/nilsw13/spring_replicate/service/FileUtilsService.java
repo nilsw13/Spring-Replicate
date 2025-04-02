@@ -100,7 +100,7 @@ public class FileUtilsService {
             } else if (fileName.endsWith(".webp")) {
                 mimeType = "image/webp";
             } else {
-                throw new IOException("Type d'image non reconnu : " + fileName);
+                throw new IOException("unknowm image type : " + fileName);
             }
         }
         String base64Encoded = Base64.getEncoder().encodeToString(fileContent);

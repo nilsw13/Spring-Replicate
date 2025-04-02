@@ -220,7 +220,7 @@ public class ReplicateRestClient {
 
         } catch (HttpStatusCodeException e) {
             throw new ReplicateApiException(
-                    "Error while post method on Replicate API :" + endpoint,
+                    "Error while patch method on Replicate API :" + endpoint,
                     e,
                     e.getStatusCode().value(),
                     e.getResponseBodyAsString()
@@ -301,7 +301,7 @@ public class ReplicateRestClient {
            return response.getBody();
         } catch (HttpStatusCodeException e) {
             throw  new ReplicateApiException(
-                    "Error while post method on Replicate API :" + endpoint,
+                    "Error while delete method on Replicate API :" + endpoint,
                     e,
                     e.getStatusCode().value(),
                     e.getResponseBodyAsString()

@@ -35,4 +35,16 @@ public class ModelVersionList {
     public List<Version> getResults() {
         return results;
     }
+
+    public void setPrevious(String previous) {
+        this.previous = previous;
+    }
+
+    public void setNext(String next) {
+        this.next = next;
+    }
+
+    public void setResults(List<Version> results) {
+        this.results = results;
+    }
 }
