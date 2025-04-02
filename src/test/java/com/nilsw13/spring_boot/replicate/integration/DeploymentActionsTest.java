@@ -76,7 +76,7 @@ public class DeploymentActionsTest extends BaseReplicateTest {
 
 
     @Test
-    void createDeploymentTest() {
+    void createDeploymentTest() throws InterruptedException {
 
 
 
@@ -90,10 +90,8 @@ public class DeploymentActionsTest extends BaseReplicateTest {
 
 
         Deployment response = replicate.deployments().create(config);
-        System.out.println(response.getCurrentRelease().getCreatedAt());
-        System.out.println(response.getName());
-        System.out.println(response.getOwner());
-        System.out.println(response.getCurrentRelease().getModel());
+        Thread.sleep(3000);
+        assertThat(response).isNotNull();
     }
 
     @Test
@@ -102,6 +100,6 @@ public class DeploymentActionsTest extends BaseReplicateTest {
                 .input("prompt", "Hugh jackman at the beach")
                 .executeFromDeployment(false);
 
-        System.out.println(prediction.getUrls());
+        assertThat(prediction.getUrls()).isNotNull();
     }
 }

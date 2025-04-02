@@ -21,9 +21,8 @@ public class ModelActionsTest extends BaseReplicateTest {
     @Test
     void ModelGetListTest() {
        ModelList response = replicate.models().list();
-
-        System.out.println(response.getResults());
-
+        assertThat(response).isNotNull();
+        assertThat(response.getResults().get(0)).isNotNull();
     }
 
     @Test
@@ -109,7 +108,9 @@ public class ModelActionsTest extends BaseReplicateTest {
                 .input("prompt", "Write a short poem about the weather")
                 .executeFromModel(true, 60);
 
-        System.out.println(prediction.getOutput());
+        Thread.sleep(3000);
+
+        assertThat(prediction.getId()).isNotNull();
 
     }
 

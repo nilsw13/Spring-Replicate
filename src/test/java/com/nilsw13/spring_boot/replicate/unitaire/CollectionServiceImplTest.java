@@ -86,8 +86,4 @@ public class CollectionServiceImplTest {
         assertEquals("null", result.getPrevious());
     }
 
-    @Test
-    public void testGetNext() {
-
-    }
 }
