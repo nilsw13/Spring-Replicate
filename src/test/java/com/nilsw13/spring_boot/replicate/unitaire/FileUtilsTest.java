@@ -1,5 +1,5 @@
 package com.nilsw13.spring_boot.replicate.unitaire;
-import com.nilsw13.spring_boot.replicate.service.FileUtilsService;
+import com.nilsw13.spring_boot.replicate.service.FileUtils;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -20,14 +20,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 
 @Tag("unit-test")
-public class FileUtilsServiceTest {
+public class FileUtilsTest {
 
     @TempDir
     Path tempDir;
 
     @Test
     void constructorTest() {
-        FileUtilsService test = new FileUtilsService();
+        FileUtils test = new FileUtils();
         assertThat(test).isNotNull();
     }
 
@@ -37,7 +37,7 @@ public class FileUtilsServiceTest {
         Path textFile = tempDir.resolve("test.txt");
         Files.writeString(textFile, "hello World");
 
-        String dataUrl = FileUtilsService.fileToDataUrl(textFile.toFile());
+        String dataUrl = FileUtils.fileToDataUrl(textFile.toFile());
 
         assertTrue(dataUrl.startsWith("data:text/plain;base64,"));
     }
@@ -45,11 +45,11 @@ public class FileUtilsServiceTest {
     @Test
     public void testFileDataUrlWithLargeFile() throws IOException {
         Path largeFile = tempDir.resolve("large file test");
-        byte[] data = new byte[FileUtilsService.MAX_DATA_URL_SIZE + 1];
+        byte[] data = new byte[FileUtils.MAX_DATA_URL_SIZE + 1];
         Files.write(largeFile, data);
 
         IOException exception = assertThrows(IOException.class, () -> {
-            FileUtilsService.fileToDataUrl(largeFile.toFile());
+            FileUtils.fileToDataUrl(largeFile.toFile());
         });
 
         assertTrue(exception.getMessage().contains("File size is too big"));
@@ -84,7 +84,7 @@ public class FileUtilsServiceTest {
         Path pngFile = tempDir.resolve("test.png");
         BufferedImage img = new BufferedImage(10, 10, BufferedImage.TYPE_INT_RGB);
         ImageIO.write(img, "PNG", pngFile.toFile());
-        String dataUrl = FileUtilsService.imageToDataUrl(pngFile.toFile());
+        String dataUrl = FileUtils.imageToDataUrl(pngFile.toFile());
 
         assertTrue(dataUrl.startsWith("data:image/png;base64,"));
     }
@@ -95,20 +95,20 @@ public class FileUtilsServiceTest {
 
 
         try (RandomAccessFile file = new RandomAccessFile(pngFile.toFile(), "rw")) {
-            file.setLength(FileUtilsService.MAX_DATA_URL_SIZE + 1);
+            file.setLength(FileUtils.MAX_DATA_URL_SIZE + 1);
         }
 
 
         long fileSize = pngFile.toFile().length();
         System.out.println("Taille du fichier : " + fileSize + " octets");
-        System.out.println("MAX_DATA_URL_SIZE : " + FileUtilsService.MAX_DATA_URL_SIZE + " octets");
+        System.out.println("MAX_DATA_URL_SIZE : " + FileUtils.MAX_DATA_URL_SIZE + " octets");
 
 
-        assertTrue(fileSize > FileUtilsService.MAX_DATA_URL_SIZE);
+        assertTrue(fileSize > FileUtils.MAX_DATA_URL_SIZE);
 
 
         IOException exception = assertThrows(IOException.class, () -> {
-            FileUtilsService.imageToDataUrl(pngFile.toFile());
+            FileUtils.imageToDataUrl(pngFile.toFile());
         });
 
         assertTrue(exception.getMessage().contains("Image size is too big"));
@@ -120,7 +120,7 @@ public class FileUtilsServiceTest {
         Files.writeString(unknownFile, "Not an image");
 
         IOException exception = assertThrows(IOException.class, () -> {
-            FileUtilsService.imageToDataUrl(unknownFile.toFile());
+            FileUtils.imageToDataUrl(unknownFile.toFile());
         });
 
         assertTrue(exception.getMessage().contains("unknowm image type"));
@@ -131,7 +131,7 @@ public class FileUtilsServiceTest {
     class TestFileUtils {
         public String fileToDataUrlWithNullMimeType(File file) throws IOException {
             // Cette méthode reproduit fileToDataUrl mais force mimeType à null
-            if (file.length() > FileUtilsService.MAX_DATA_URL_SIZE) {
+            if (file.length() > FileUtils.MAX_DATA_URL_SIZE) {
                 throw new IOException("File size is too big, you need to host it somewhere and pass the Url instead");
             }
 
