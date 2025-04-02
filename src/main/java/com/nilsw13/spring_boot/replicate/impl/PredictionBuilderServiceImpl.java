@@ -38,9 +38,11 @@ public class PredictionBuilderServiceImpl implements PredictionBuilderService {
     private final String modelVersion;
     private final String modelOwner;
     private final String modelName;
+    private static final String PREFER_PARAMETER = "Prefer";
     private static final String PREFER_WAIT_PARAMETER = "wait=";
     private static final String WEBHOOK_EVENTS_FILTER = "webhook_events_filter";
     private static final String INPUT = "input";
+    private static final String WEBHOOK = "webhook";
 
 
     private final Map<String, Object> inputs = new HashMap<>();
@@ -188,7 +190,7 @@ public class PredictionBuilderServiceImpl implements PredictionBuilderService {
         requestBody.put(INPUT, inputs);
 
         if (webhookUrl != null && !webhookUrl.isEmpty()){
-            requestBody.put("webhook", webhookUrl);
+            requestBody.put(WEBHOOK, webhookUrl);
             if(webhookEventFilter != null && !webhookEventFilter.isEmpty()) {
                 requestBody.put(WEBHOOK_EVENTS_FILTER, webhookEventFilter);
             }
@@ -197,7 +199,7 @@ public class PredictionBuilderServiceImpl implements PredictionBuilderService {
 
 
         if (wait) {
-            headers.put("Prefer", PREFER_WAIT_PARAMETER + timeoutSeconds);
+            headers.put(PREFER_PARAMETER, PREFER_WAIT_PARAMETER + timeoutSeconds);
         }
 
         return restClient.post("deployments/" + modelOwner + "/" + modelName + "/predictions",
@@ -234,7 +236,7 @@ public class PredictionBuilderServiceImpl implements PredictionBuilderService {
         requestBody.put(INPUT, inputs);
 
         if (webhookUrl != null && !webhookUrl.isEmpty()){
-            requestBody.put("webhook", webhookUrl);
+            requestBody.put(WEBHOOK, webhookUrl);
             if(webhookEventFilter != null && !webhookEventFilter.isEmpty()) {
                 requestBody.put(WEBHOOK_EVENTS_FILTER, webhookEventFilter);
             }
@@ -242,7 +244,7 @@ public class PredictionBuilderServiceImpl implements PredictionBuilderService {
 
 
         if (wait) {
-            headers.put("Prefer", PREFER_WAIT_PARAMETER + timeoutSeconds);        }
+            headers.put(PREFER_PARAMETER, PREFER_WAIT_PARAMETER + timeoutSeconds);        }
 
         return restClient.post("models/" + modelOwner + "/" + modelName + "/predictions",
                 requestBody, headers, Prediction.class);
@@ -281,7 +283,7 @@ public class PredictionBuilderServiceImpl implements PredictionBuilderService {
         System.out.println(inputs);
 
         if (webhookUrl != null && !webhookUrl.isEmpty()){
-            requestBody.put("webhook", webhookUrl);
+            requestBody.put(WEBHOOK, webhookUrl);
             if(webhookEventFilter != null && !webhookEventFilter.isEmpty()) {
                 requestBody.put(WEBHOOK_EVENTS_FILTER, webhookEventFilter);
             }
@@ -289,7 +291,7 @@ public class PredictionBuilderServiceImpl implements PredictionBuilderService {
 
 
         if (wait) {
-            headers.put("Prefer", PREFER_WAIT_PARAMETER + timeoutSeconds);        }
+            headers.put(PREFER_PARAMETER, PREFER_WAIT_PARAMETER + timeoutSeconds);        }
 
         return restClient.post("predictions", requestBody, headers, Prediction.class);
     }
