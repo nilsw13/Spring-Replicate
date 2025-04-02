@@ -1,11 +1,12 @@
-package com.nilsw13.spring_replicate.integration.webhookSigning;
+package com.nilsw13.spring_replicate.integration;
 
-import com.nilsw13.spring_replicate.integration.BaseReplicateTest;
 import com.nilsw13.spring_replicate.ResponseType.webhook.SigningSecretDefaultWebhook;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+@Tag("integration-test")
 public class WebhookSigningSecretTest extends BaseReplicateTest {
 
 

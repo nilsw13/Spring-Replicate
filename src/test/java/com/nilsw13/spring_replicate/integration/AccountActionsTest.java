@@ -1,11 +1,12 @@
-package com.nilsw13.spring_replicate.integration.account;
+package com.nilsw13.spring_replicate.integration;
 
-import com.nilsw13.spring_replicate.integration.BaseReplicateTest;
 import com.nilsw13.spring_replicate.ResponseType.Account.Account;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Tag("integration-test")
 public class AccountActionsTest extends BaseReplicateTest {
 
     @Test

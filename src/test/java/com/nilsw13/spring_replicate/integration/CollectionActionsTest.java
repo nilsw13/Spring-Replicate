@@ -1,12 +1,13 @@
-package com.nilsw13.spring_replicate.integration.collection;
+package com.nilsw13.spring_replicate.integration;
 
 import com.nilsw13.spring_replicate.ResponseType.Collection.CollectionModel;
 import com.nilsw13.spring_replicate.ResponseType.Collection.CollectionModelList;
-import com.nilsw13.spring_replicate.integration.BaseReplicateTest;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+@Tag("integration-test")
 public class CollectionActionsTest extends BaseReplicateTest {
 
     @Test

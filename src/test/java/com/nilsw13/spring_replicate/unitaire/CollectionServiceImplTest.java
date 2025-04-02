@@ -1,27 +1,23 @@
-package com.nilsw13.spring_replicate.unitaire.collection;
-
+package com.nilsw13.spring_replicate.unitaire;
 
 import com.nilsw13.spring_replicate.ResponseType.Collection.CollectionModel;
 import com.nilsw13.spring_replicate.ResponseType.Collection.CollectionModelList;
 import com.nilsw13.spring_replicate.api.ReplicateRestClient;
 import com.nilsw13.spring_replicate.impl.CollectionServiceImpl;
-import com.nilsw13.spring_replicate.unitaire.UnitTest;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.experimental.categories.Category;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
-import static reactor.core.publisher.Mono.when;
 
-
-@Category(UnitTest.class)
+@Tag("unit-test")
 public class CollectionServiceImplTest {
 
     @Mock
@@ -29,7 +25,7 @@ public class CollectionServiceImplTest {
 
     private CollectionServiceImpl collectionService;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
         collectionService = new CollectionServiceImpl(mockRestClient);
@@ -46,13 +42,12 @@ public class CollectionServiceImplTest {
 
         CollectionModel result = collectionService.get("collection-slug");
 
-        assertNotNull("Result shouldn't be null", result);
+        assertNotNull(result, "Result shouldn't be null");
         assertEquals("collection", result.getName());
         assertEquals("collection-slug", result.getSlug());
         assertEquals("collection-description", result.getDescription());
         verify(mockRestClient, times(1)).get("collections/" + collectionModel.getSlug(), CollectionModel.class);
         verifyNoMoreInteractions(mockRestClient);
-
     }
 
     @Test
@@ -80,13 +75,19 @@ public class CollectionServiceImplTest {
 
         CollectionModelList result = collectionService.list();
 
-        assertNotNull("result shouldn't be null", result);
-        assertEquals("List should have 2 collections", 2, result.getResults().size());
-        assertEquals("First element should be collection1", "collection1", result.getResults().get(0).getName());
-        assertEquals("Second element should be collection2", "collection2", result.getResults().get(1).getName());
+        assertNotNull(result, "result shouldn't be null");
+        assertEquals(2, result.getResults().size(), "List should have 2 collections");
+        assertEquals("collection1", result.getResults().get(0).getName(), "First element should be collection1");
+        assertEquals("collection2", result.getResults().get(1).getName(), "Second element should be collection2");
 
         verify(mockRestClient, times(1)).get("collections", CollectionModelList.class);
         verifyNoMoreInteractions(mockRestClient);
+        assertEquals("null", result.getNext());
+        assertEquals("null", result.getPrevious());
     }
 
+    @Test
+    public void testGetNext() {
+
+    }
 }

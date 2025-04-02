@@ -1,16 +1,22 @@
-package com.nilsw13.spring_replicate.integration.model;
+package com.nilsw13.spring_replicate.integration;
 
 import com.nilsw13.spring_replicate.ResponseType.Model.Model;
 import com.nilsw13.spring_replicate.ResponseType.Model.ModelList;
 import com.nilsw13.spring_replicate.ResponseType.Model.ModelVersionList;
 import com.nilsw13.spring_replicate.ResponseType.Model.Version;
 import com.nilsw13.spring_replicate.ResponseType.Prediction.Prediction;
-import com.nilsw13.spring_replicate.integration.BaseReplicateTest;
+import com.nilsw13.spring_replicate.exception.ReplicateApiException;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.Fail.fail;
 
+@Tag("integration-test")
 public class ModelActionsTest extends BaseReplicateTest {
+
+    private static final String modelTest = "linkedin_flux_01";
+    private static final String modelToCreate = "modeltest-" + System.currentTimeMillis();
 
     @Test
     void ModelGetListTest() {
@@ -25,17 +31,20 @@ public class ModelActionsTest extends BaseReplicateTest {
         String owner = "anthropic";
         String modelName = "claude-3.7-sonnet";
         Model response = replicate.models().get(owner, modelName);
+        assertThat(response).isNotNull();
+        assertThat(response.getUrl()).isNotNull();
+        assertThat(response.getName()).isEqualTo("claude-3.7-sonnet");
 
-        System.out.println(response.getUrl());
-    }
+     }
 
     @Test
     void getModelVersionsList() {
         String owner = "nilsw13";
-        String modelName = "nari_flux_04";
+        String modelName = "linkedin_flux_01";
         ModelVersionList response = replicate.models().listModelVersions(owner, modelName);
-
-        System.out.println(response.getResults());
+        assertThat(response).isNotNull();
+        assertThat(response.getResults()).isNotNull();
+        assertThat(response.getResults().get(0).getId()).isNotNull();
     }
 
     @Test
@@ -44,9 +53,12 @@ public class ModelActionsTest extends BaseReplicateTest {
         String modelName = "linkedin_flux_01";
         String versionId = "4fee9b1305f4bbfeeabc2ad9db14cf904d40070c71a962eb2def07e098973bef";
         Version response = replicate.models().getModelVersion(owner, modelName, versionId);
-        System.out.println(response.getId());
-        System.out.println(response.getCogVersion());
-        System.out.println(response.getCreatedAt());
+
+        assertThat(response).isNotNull();
+        assertThat(response.getId()).isEqualTo("4fee9b1305f4bbfeeabc2ad9db14cf904d40070c71a962eb2def07e098973bef");
+        assertThat(response.getCogVersion()).isNotNull();
+
+
     }
 
 
@@ -56,49 +68,40 @@ public class ModelActionsTest extends BaseReplicateTest {
         String modelName = "claude-3.7-sonnet";
         String response = replicate.models().getModelReadme(owner, modelName);
 
-        System.out.println(response);
+        assertThat(response).isNotNull();
     }
 
-    @Test
-    void deleteModelVersionTest() {
+
+    @Test void deleteModelTest() throws InterruptedException {
+
+        Model model = new Model();
+        model.setName(modelToCreate);
+        model.setOwner("nilsw13");
+        model.setHardware("cpu");
+        model.setVisibility("private");
+        System.out.println("modelToCreate : " + modelToCreate + "/" + " " + "modelName : " + model.getName());
+        Model preResponse = replicate.models().create(model);
+        assertThat(preResponse).isNotNull();
+        Thread.sleep(3000);
+
         String owner = "nilsw13";
-        String modelName = "nilslinked-108216909907328377651";
-        String versionId = "59e096d271654c7f471c47d93344e5947ae2bd3477e8f9d29f88c8ede0a9c173";
-        Version response = replicate.models().deleteModelVersion(owner, modelName, versionId);
-
-        System.out.println(response);
 
 
+        Model response = replicate.models().delete(owner, modelToCreate);
 
-    }
-
-    @Test void deleteModelTest() {
-        String owner = "nilsw13";
-        String modelName = "nilslinked-108216909907328377651";
-
-
-        Model response = replicate.models().delete(owner, modelName);
-        System.out.println(response);
 
         assertThat(response).isNull();
 
+        try {
+            Model model1 = replicate.models().get(owner, modelToCreate);
+            fail("Model still exists");
+        } catch (ReplicateApiException e) {
+            assertThat(e.getResponseBody()).contains("This model has been deleted");
+        }
     }
 
-    @Test
-    void createModelTest() throws InterruptedException {
-        Model model = new Model();
-        model.setOwner("nilsw13");
-        model.setVisibility("private");
-        model.setName("testlibrairie");
-        model.setDescription("ce model est un test de creation de model via ma librairie java springboot");
-        model.setHardware("cpu");
 
-        Model response = replicate.models().create(model);
 
-        System.out.println(response.getName());
-        assertThat(response).isNotNull();
-
-    }
 
     @Test
     void createPredictionFromModelTest() throws InterruptedException {
