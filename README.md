@@ -2,6 +2,9 @@
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 ![version](https://img.shields.io/badge/version-1.0.0-purple)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=nilsw13_Spring-Boot-Replicate&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=nilsw13_Spring-Boot-Replicate)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=nilsw13_Spring-Boot-Replicate&metric=coverage)](https://sonarcloud.io/summary/new_code?id=nilsw13_Spring-Boot-Replicate)
+
 
 
 **🚧 Work in Progress 🚧**  

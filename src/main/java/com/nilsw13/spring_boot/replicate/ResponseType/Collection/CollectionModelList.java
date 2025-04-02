@@ -25,18 +25,19 @@ public class CollectionModelList {
     private String previous;
     List<CollectionModel> results;
 
-    /**
-     * Default constructor for CollectionModelList class.
-     *
-     * This empty constructor exists for the following reasons:
-     * 1. Required by JSON/Jackson deserialization process when mapping API responses
-     * 2. Enables library users to instantiate response objects when needed
-     * 3. Supports serialization/deserialization in various client implementations
-     *
-     * Although empty, this constructor is essential for the proper functioning
-     * of the API client library and should not be removed.
-     */
     public CollectionModelList() {
+
+        /**
+         * Default constructor for CollectionModelList class.
+         *
+         * This empty constructor exists for the following reasons:
+         * 1. Required by JSON/Jackson deserialization process when mapping API responses
+         * 2. Enables library users to instantiate response objects when needed
+         * 3. Supports serialization/deserialization in various client implementations
+         *
+         * Although empty, this constructor is essential for the proper functioning
+         * of the API client library and should not be removed.
+         */
     }
 
     public String getNext() {

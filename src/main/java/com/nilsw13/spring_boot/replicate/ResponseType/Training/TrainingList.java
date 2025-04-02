@@ -23,18 +23,19 @@ public class TrainingList {
     private String next;
     private List<Training> results;
 
-    /**
-     * Default constructor for TrainingList class.
-     *
-     * This empty constructor exists for the following reasons:
-     * 1. Required by JSON/Jackson deserialization process when mapping API responses
-     * 2. Enables library users to instantiate response objects when needed
-     * 3. Supports serialization/deserialization in various client implementations
-     *
-     * Although empty, this constructor is essential for the proper functioning
-     * of the API client library and should not be removed.
-     */
+
     public TrainingList() {
+        /**
+         * Default constructor for TrainingList class.
+         *
+         * This empty constructor exists for the following reasons:
+         * 1. Required by JSON/Jackson deserialization process when mapping API responses
+         * 2. Enables library users to instantiate response objects when needed
+         * 3. Supports serialization/deserialization in various client implementations
+         *
+         * Although empty, this constructor is essential for the proper functioning
+         * of the API client library and should not be removed.
+         */
     }
 
     public String getPrevious() {
