@@ -159,7 +159,7 @@ import static org.mockito.Mockito.*;
     }
 
     @Test
-     void testCreateDeploymentPrediction() throws InterruptedException {
+     void testCreateDeploymentPrediction()  {
         // Configurer
         String owner = "nilsw13";
         String name = "test deployment create";

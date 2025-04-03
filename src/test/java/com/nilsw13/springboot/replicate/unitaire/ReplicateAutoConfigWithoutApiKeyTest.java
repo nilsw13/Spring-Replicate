@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.runner.ApplicationContextRunner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Tag("unit-test")
- class ReplicateAutoConfigTestWithoutApiKey {
+ class ReplicateAutoConfigWithoutApiKeyTest {
 
     private final ApplicationContextRunner contextRunner = new ApplicationContextRunner()
             .withConfiguration(AutoConfigurations.of(ReplicateAutoConfig.class));

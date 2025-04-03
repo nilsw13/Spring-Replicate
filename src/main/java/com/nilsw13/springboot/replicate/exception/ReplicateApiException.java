@@ -36,9 +36,7 @@ public class ReplicateApiException extends RuntimeException {
 
     public ReplicateApiException(String message, Throwable cause) {
         super(message, cause);
-
-        if (cause instanceof HttpStatusCodeException) {
-            HttpStatusCodeException hsce = (HttpStatusCodeException) cause;
+        if (cause instanceof HttpStatusCodeException hsce) {
             this.statusCode = hsce.getStatusCode().value();
             this.responseBody = hsce.getResponseBodyAsString();
         }

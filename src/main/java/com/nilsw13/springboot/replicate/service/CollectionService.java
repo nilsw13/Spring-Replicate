@@ -44,11 +44,11 @@ public interface CollectionService {
     /**
      * Retrieves a single collection by its unique slug identifier.
      *
-     * @param collection_slug The slug that uniquely identifies the desired collection
+     * @param collectionSlug The slug that uniquely identifies the desired collection
      * @return The requested CollectionModel if found
      * @throws ReplicateApiException If the collection does not exist or the API request fails
      */
-    CollectionModel get(String collection_slug);
+    CollectionModel get(String collectionSlug);
 
 
 }

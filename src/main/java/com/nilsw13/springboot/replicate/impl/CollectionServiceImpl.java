@@ -70,10 +70,10 @@ public class CollectionServiceImpl implements CollectionService {
      *
      * This implementation makes a GET request to the "/collections/{collection_slug}"
      * endpoint and deserializes the response into a CollectionModel.
-     * @param collection_slug The unique identifier of the collection to retrieve
+     * @param collectionSlug The unique identifier of the collection to retrieve
      */
     @Override
-    public CollectionModel get(String collection_slug) {
-        return replicateRestClient.get("collections/" + collection_slug, CollectionModel.class);
+    public CollectionModel get(String collectionSlug) {
+        return replicateRestClient.get("collections/" + collectionSlug, CollectionModel.class);
     }
 }
