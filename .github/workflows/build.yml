@@ -65,7 +65,7 @@ jobs:
       - name: Validate PR approvers
         if: github.event_name == 'pull_request'
         run: |
-          if [[ "${{ github.event.pull_request.user.login }}" != "votre-username-github" ]]; then
+          if [[ "${{ github.event.pull_request.user.login }}" != "nilsw13" ]]; then
             echo "Only owner can merge PR"
             exit 1
           fi
