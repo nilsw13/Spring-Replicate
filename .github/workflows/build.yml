@@ -66,6 +66,6 @@ jobs:
         if: github.event_name == 'pull_request'
         run: |
           if [[ "${{ github.event.pull_request.user.login }}" != "votre-username-github" ]]; then
-            echo "Seul le propriétaire peut merger les PR"
+            echo "Only owner can merge PR"
             exit 1
           fi
