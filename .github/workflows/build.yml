@@ -1,21 +1,21 @@
-name: Build, Test and Analyze
+name: Test Execution
 
 on:
   push:
     branches: [ master, main ]
-  pull_request:
-    branches: [ master, main ]
-  workflow_dispatch:  # manually launch workflow
+    paths-ignore:
+      - '**.md'
+  workflow_dispatch:
 
 jobs:
-  build:
-    name: Build and analyze
+  tests:
+    name: Run Tests
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # Important for SonarCloud to have full history
+          fetch-depth: 0
 
       - name: Set up JDK 21
         uses: actions/setup-java@v3
@@ -24,30 +24,32 @@ jobs:
           distribution: 'corretto'
           cache: maven
 
-      - name: Cache Maven packages
+      - name: Cache Maven
         uses: actions/cache@v3
         with:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
-      - name: Cache SonarCloud packages
-        uses: actions/cache@v3
-        with:
-          path: ~/.sonar/cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: ${{ runner.os }}-sonar
-
       - name: Run tests without API key
-        run: mvn test -Dtest=ReplicateAutoConfigTestWithoutApiKey
+        if: github.event_name == 'push'
+        run: mvn test -Punit-test -Dtest=ReplicateAutoConfigTestWithoutApiKey
 
 
-      - name: Build and run tests with JaCoCo
+      - name: Run remaining unit tests
+        if: github.event_name == 'push'
         env:
           REPLICATE_API_KEY: ${{ secrets.REPLICATE_API_KEY }}
-        run: mvn clean verify jacoco:report -Dtest=!ReplicateAutoConfigTestWithoutApiKey
+        run: mvn test -Punit-test -Dtest=!ReplicateAutoConfigTestWithoutApiKey
+
+      - name: Run all tests except ReplicateAutoConfigTestWithoutApiKey
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          REPLICATE_API_KEY: ${{ secrets.REPLICATE_API_KEY }}
+        run: mvn verify -Dtest=!ReplicateAutoConfigTestWithoutApiKey -DfailIfNoTests=false jacoco:report
 
       - name: SonarCloud Scan
+        if: github.event_name == 'workflow_dispatch' && success()
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
