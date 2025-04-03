@@ -12,7 +12,7 @@ import java.util.List;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @Tag("integration-test")
-public class TrainingActionsTest extends BaseReplicateTest {
+ class TrainingActionsTest extends BaseReplicateTest {
 
     @Test
     void getTrainingTest() {
@@ -27,7 +27,7 @@ public class TrainingActionsTest extends BaseReplicateTest {
         TrainingList trainingList = replicate.trainings().list();
         assertThat(trainingList.getResults()).isNotNull();
         assertThat(trainingList.getNext()).isNotNull();
-        assertThat(trainingList.getPrevious()).isEqualTo(null);
+        assertThat(trainingList.getPrevious()).isNull();
     }
 
     @Test

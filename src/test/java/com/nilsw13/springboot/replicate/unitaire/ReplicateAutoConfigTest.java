@@ -19,7 +19,7 @@ import org.springframework.context.annotation.Bean;
 
 import static org.assertj.core.api.Assertions.assertThat;
 @Tag("unit-test")
-public class ReplicateAutoConfigTest {
+ class ReplicateAutoConfigTest {
 
     private final ApplicationContextRunner contextRunner = new ApplicationContextRunner()
             .withConfiguration(AutoConfigurations.of(ReplicateAutoConfig.class));
@@ -27,7 +27,7 @@ public class ReplicateAutoConfigTest {
 
 
     @Test
-    public void shouldCreateBeansWhenApiKeyIsPresent() {
+     void shouldCreateBeansWhenApiKeyIsPresent() {
         contextRunner
                 .withPropertyValues("replicate.api-key=test-api-key")
                 .run(context -> {
@@ -59,7 +59,7 @@ public class ReplicateAutoConfigTest {
     }
 
     @Test
-    public void shouldRespectCustomBeans() {
+     void shouldRespectCustomBeans() {
         contextRunner
                 .withPropertyValues("replicate.api-key=test-api-key")
                 .withUserConfiguration(CustomModelServiceConfig.class)

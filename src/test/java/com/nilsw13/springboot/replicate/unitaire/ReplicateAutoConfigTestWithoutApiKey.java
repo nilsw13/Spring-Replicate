@@ -11,13 +11,13 @@ import org.springframework.boot.test.context.runner.ApplicationContextRunner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Tag("unit-test")
-public class ReplicateAutoConfigTestWithoutApiKey {
+ class ReplicateAutoConfigTestWithoutApiKey {
 
     private final ApplicationContextRunner contextRunner = new ApplicationContextRunner()
             .withConfiguration(AutoConfigurations.of(ReplicateAutoConfig.class));
 
     @Test
-    public void shouldNotCreateBeansWhenApiKeyIsMissing() {
+     void shouldNotCreateBeansWhenApiKeyIsMissing() {
         contextRunner
                 .withPropertyValues("replicate.api.key")
                 .run(context -> {

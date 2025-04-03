@@ -10,10 +10,11 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.assertj.core.api.Fail.fail;
 
 @Tag("integration-test")
-public class ModelActionsTest extends BaseReplicateTest {
+ class ModelActionsTest extends BaseReplicateTest {
 
     private static final String MODEL_TEST = "linkedin_flux_01";
     private static final String MODEL_TO_CREATE  = "modeltest-" + System.currentTimeMillis();
@@ -70,32 +71,36 @@ public class ModelActionsTest extends BaseReplicateTest {
     }
 
 
-    @Test void deleteModelTest() {
+    @Test
+    void deleteModelTest() {
 
         Model model = new Model();
         model.setName(MODEL_TO_CREATE);
         model.setOwner("nilsw13");
         model.setHardware("cpu");
         model.setVisibility("private");
-        System.out.println("modelToCreate : " + MODEL_TO_CREATE + "/" + " " + "modelName : " + model.getName());
-        Model preResponse = replicate.models().create(model);
-        assertThat(preResponse).isNotNull();
+        Model creationResponse = replicate.models().create(model);
+        assertThat(creationResponse)
+                .as("check model has been created")
+                .isNotNull();
+
 
 
         String owner = "nilsw13";
 
 
-        Model response = replicate.models().delete(owner, MODEL_TO_CREATE);
+        Model deletionResponse = replicate.models().delete(owner, MODEL_TO_CREATE);
+        assertThat(deletionResponse)
+                .as("Deleting should return null")
+                .isNull();
 
-
-        assertThat(response).isNull();
-
-        try {
-           replicate.models().get(owner, MODEL_TO_CREATE);
-            fail("Model still exists");
-        } catch (ReplicateApiException e) {
-            assertThat(e.getResponseBody()).contains("This model has been deleted");
-        }
+        assertThatThrownBy(() -> replicate.models().get(owner, MODEL_TO_CREATE))
+                .isInstanceOf(ReplicateApiException.class)
+                .satisfies(e -> {
+                    ReplicateApiException ex = (ReplicateApiException) e;
+                    assertThat(ex.getStatusCode()).isEqualTo(410);
+                    assertThat(ex.getResponseBody()).contains("\"detail\":\"This model has been deleted.\"");
+                });
     }
 
 

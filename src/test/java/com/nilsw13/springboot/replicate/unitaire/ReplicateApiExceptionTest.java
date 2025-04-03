@@ -11,10 +11,10 @@ import java.nio.charset.StandardCharsets;
 import static org.junit.jupiter.api.Assertions.*;
 
 @Tag("unit-test")
-public class ReplicateApiExceptionTest {
+ class ReplicateApiExceptionTest {
 
     @Test
-    public void testConstructorWithMessageTest() {
+     void testConstructorWithMessageTest() {
         String errorMessage = "API connection failed";
         ReplicateApiException exception = new ReplicateApiException(errorMessage);
 
@@ -24,7 +24,7 @@ public class ReplicateApiExceptionTest {
     }
 
     @Test
-    public void testConstructorWithHttpStatusCodeException() {
+     void testConstructorWithHttpStatusCodeException() {
         HttpStatusCodeException httpException = new HttpStatusCodeException(
                 HttpStatus.NOT_FOUND,
                 "Not Found",
@@ -41,7 +41,7 @@ public class ReplicateApiExceptionTest {
         assertEquals("{ \"error\": \"Resource not found\" }", exception.getResponseBody());
     }
     @Test
-    public void testConstructorWithAllParameters() {
+     void testConstructorWithAllParameters() {
         ReplicateApiException exception = new ReplicateApiException(
                 "Custom error",
                 new RuntimeException("Original error"),
@@ -56,7 +56,7 @@ public class ReplicateApiExceptionTest {
     }
 
     @Test
-    public void testToString() {
+     void testToString() {
         ReplicateApiException exception = new ReplicateApiException(
                 "API error",
                 new RuntimeException(),

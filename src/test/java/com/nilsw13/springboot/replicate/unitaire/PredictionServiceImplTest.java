@@ -15,7 +15,7 @@ import java.util.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @Tag("unit-test")
-public class PredictionServiceImplTest {
+ class PredictionServiceImplTest {
 
     @Mock
     private ReplicateRestClient mockRestClient;
@@ -24,7 +24,7 @@ public class PredictionServiceImplTest {
 
 
     @BeforeEach
-    public void setUp() {
+     void setUp() {
         MockitoAnnotations.openMocks(this);
         predictionService = new PredictionServiceImpl(mockRestClient);
     }

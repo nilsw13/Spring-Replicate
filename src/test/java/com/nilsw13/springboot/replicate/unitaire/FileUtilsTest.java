@@ -20,10 +20,9 @@ import java.util.Base64;
 import static org.assertj.core.api.AssertionsForClassTypes.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.ArgumentMatchers.any;
 
 @Tag("unit-test")
-public class FileUtilsTest {
+ class FileUtilsTest {
 
     @TempDir
     Path tempDir;
@@ -42,7 +41,7 @@ public class FileUtilsTest {
     }
 
     @Test
-    public void testFileToDataUrl() throws IOException {
+     void testFileToDataUrl() throws IOException {
         Path textFile = tempDir.resolve("test.txt");
         Files.writeString(textFile, "hello World");
 
@@ -52,7 +51,7 @@ public class FileUtilsTest {
     }
 
     @Test
-    public void testFileDataUrlWithLargeFile() throws IOException {
+     void testFileDataUrlWithLargeFile() throws IOException {
         Path largeFile = tempDir.resolve("large file test");
         byte[] data = new byte[FileUtils.MAX_DATA_URL_SIZE + 1];
         Files.write(largeFile, data);
@@ -89,7 +88,7 @@ public class FileUtilsTest {
 
 
     @Test
-    public void testImageToDataUrl() throws IOException {
+     void testImageToDataUrl() throws IOException {
         Path pngFile = tempDir.resolve("test.png");
         BufferedImage img = new BufferedImage(10, 10, BufferedImage.TYPE_INT_RGB);
         ImageIO.write(img, "PNG", pngFile.toFile());
@@ -124,7 +123,7 @@ public class FileUtilsTest {
     }
 
     @Test
-    public void testImageToDataUrlWithUnknownFormat() throws IOException {
+     void testImageToDataUrlWithUnknownFormat() throws IOException {
         Path unknownFile = tempDir.resolve("test.xyz");
         Files.writeString(unknownFile, "Not an image");
 

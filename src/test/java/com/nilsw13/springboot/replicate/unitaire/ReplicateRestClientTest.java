@@ -26,7 +26,7 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
 @Tag("unit-test")
-public class ReplicateRestClientTest {
+ class ReplicateRestClientTest {
 
     @Mock
     private RestTemplate mockRestTemplate;
@@ -145,10 +145,8 @@ public class ReplicateRestClientTest {
                 any(Class.class)
         )).thenThrow(mockException);
 
-        ReplicateApiException exception = assertThrows(ReplicateApiException.class, () -> {
-            DeploymentConfiguration config = new DeploymentConfiguration();
-            replicateRestClient.patch("test-endpoint", config, Object.class);
-        });
+        ReplicateApiException exception = assertThrows(ReplicateApiException.class,
+                () -> replicateRestClient.patch("test-endpoint", new DeploymentConfiguration(), Object.class));
 
         assertEquals(400, exception.getStatusCode());
         assertEquals("{\"error\":\"Test error\"}", exception.getResponseBody());

@@ -17,7 +17,7 @@ import java.util.Map;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @Tag("unit-test")
-public class TrainingServiceImplTest {
+ class TrainingServiceImplTest {
 
     @Mock
     private ReplicateRestClient mockRestClient;
@@ -60,7 +60,7 @@ public class TrainingServiceImplTest {
         public boolean capturedWait;
         public int capturedTimeout;
         public int executeOverloadCallCount = 0;
-        public Training mockTraining = new Training(); // Ou créez un mock selon vos besoins
+        public Training mockTraining = new Training();
 
         /**
          * Constructs a new TrainingBuilderServiceImpl with the required dependencies.
@@ -76,12 +76,10 @@ public class TrainingServiceImplTest {
 
         @Override
         public Training execute(boolean wait, int timeout) throws InterruptedException {
-            // Capturer les arguments
             capturedWait = wait;
             capturedTimeout = timeout;
             executeOverloadCallCount++;
 
-            // Retourner un objet Training prédéfini
             return mockTraining;
         }
     }

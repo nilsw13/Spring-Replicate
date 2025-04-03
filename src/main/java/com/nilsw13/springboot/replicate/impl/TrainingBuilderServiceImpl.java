@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toList;
+
 
 /**
  * Implementation of the TrainingBuilderService for configuring and executing training jobs.
@@ -145,7 +147,7 @@ public class TrainingBuilderServiceImpl implements TrainingBuilderService {
     public TrainingBuilderService webhookEventFilter(List<WebhookEvent> events) {
         this.webhookEventFilter = events.stream()
                 .map(WebhookEvent::getValue)
-                .collect(Collectors.toList());
+                .toList();
         return this;
     }
 

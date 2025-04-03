@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @Tag("unit-test")
-public class ModelServiceImplTest {
+ class ModelServiceImplTest {
 
     @Mock
     private ReplicateRestClient mockRestClient;
@@ -29,13 +29,13 @@ public class ModelServiceImplTest {
     private ModelService modelService;
 
     @BeforeEach
-    public void setUp() {
+     void setUp() {
         MockitoAnnotations.openMocks(this);
         modelService = new ModelServiceImpl(mockRestClient);
     }
 
     @Test
-    public void testGet_ShouldCallRightEndpointAndReturnModel() {
+     void testGet_ShouldCallRightEndpointAndReturnModel() {
         Model model = new Model();
         model.setName("modelTest");
         model.setOwner("ownerTest");
@@ -62,7 +62,7 @@ public class ModelServiceImplTest {
 
 
     @Test
-    public void testGet_ShouldCallRightEndpointAndReturnModelList() {
+     void testGet_ShouldCallRightEndpointAndReturnModelList() {
         List<Model> modelList = new ArrayList<>();
         Model model = new Model();
         model.setName("modelTest");
@@ -98,7 +98,7 @@ public class ModelServiceImplTest {
     }
 
     @Test
-    public void testGet_ShouldCallRightEndpointAndReturnModelVersionList() {
+     void testGet_ShouldCallRightEndpointAndReturnModelVersionList() {
         Model model = new Model();
         model.setName("modelTest");
         model.setOwner("ownerTest");
@@ -134,7 +134,7 @@ public class ModelServiceImplTest {
     }
 
     @Test
-    public void testGet_ShouldCallRightEndpointAndReturnModelVersion() {
+     void testGet_ShouldCallRightEndpointAndReturnModelVersion() {
         Version version = new Version();
         version.setCreatedAt("12/02/12");
         version.setCogVersion("dev");
@@ -154,7 +154,7 @@ public class ModelServiceImplTest {
     }
 
     @Test
-    public void testDeleteVersion_ShouldCallRightEndpointAndReturnNull() {
+     void testDeleteVersion_ShouldCallRightEndpointAndReturnNull() {
         Version version = new Version();
         version.setCreatedAt("12/02/12");
         version.setCogVersion("dev");

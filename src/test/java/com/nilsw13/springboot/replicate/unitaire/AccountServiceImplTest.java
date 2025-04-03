@@ -18,7 +18,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 @Tag("unit-test")
-public class AccountServiceImplTest {
+ class AccountServiceImplTest {
 
     @Mock
     private ReplicateRestClient mockRestClient;
@@ -26,14 +26,14 @@ public class AccountServiceImplTest {
      AccountServiceImpl accountService;
 
     @BeforeEach
-    public void setUp() {
+     void setUp() {
         MockitoAnnotations.openMocks(this);
 
         accountService = new AccountServiceImpl(mockRestClient);
     }
 
     @Test
-    public void testGet_ShouldCallCorrectEndpointAndReturnAccount() {
+     void testGet_ShouldCallCorrectEndpointAndReturnAccount() {
         Account mockAccount = new Account();
         mockAccount.setUsername("test-user");
         mockAccount.setName("Test User");

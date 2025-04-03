@@ -11,7 +11,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 
 @Tag("integration-test")
-public class DeploymentActionsTest extends BaseReplicateTest {
+ class DeploymentActionsTest extends BaseReplicateTest {
 
     private static final String TEST_DEPLOYMENT_NAME = "testdeployment-1743461944585";
 
@@ -39,7 +39,7 @@ public class DeploymentActionsTest extends BaseReplicateTest {
         System.out.println(deploymentList.getResults());
         assertThat(deploymentList).isNotNull();
         assertThat(deploymentList.getResults()).isNotNull();
-        assertThat(deploymentList.getPrevious()).isEqualTo(null);
+        assertThat(deploymentList.getPrevious()).isNull();
         assertThat(deploymentList.getNext()).isNotNull();
     }
 

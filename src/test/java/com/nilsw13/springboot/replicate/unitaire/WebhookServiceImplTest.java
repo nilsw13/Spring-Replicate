@@ -14,14 +14,14 @@ import org.mockito.MockitoAnnotations;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @Tag("unit-test")
-public class WebhookServiceImplTest {
+ class WebhookServiceImplTest {
 
     @Mock
     private ReplicateRestClient mockRestClient;
     WebhookService webhookService;
 
     @BeforeEach
-    public void setUp() {
+     void setUp() {
         MockitoAnnotations.openMocks(this);
         webhookService = new WebhookServiceImpl(mockRestClient);
     }
@@ -29,14 +29,14 @@ public class WebhookServiceImplTest {
 
 
     @Test
-    public void testGetValue(){
+     void testGetValue(){
         String value = WebhookEvent.COMPLETED.getValue();
         assertThat(value).isEqualTo("completed");
 
     }
 
     @Test
-    public void testToString() {
+     void testToString() {
         String value = WebhookEvent.LOGS.toString();
         assertThat(value).isEqualTo("logs");
     }

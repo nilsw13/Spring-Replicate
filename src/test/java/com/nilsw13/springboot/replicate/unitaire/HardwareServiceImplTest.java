@@ -16,7 +16,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 @Tag("unit-test")
-public class HardwareServiceImplTest {
+ class HardwareServiceImplTest {
 
     @Mock
     private ReplicateRestClient mockReplicateRestClient;
@@ -24,13 +24,13 @@ public class HardwareServiceImplTest {
      HardwareService hardwareService;
 
     @BeforeEach
-    public void setUp() {
+     void setUp() {
         MockitoAnnotations.openMocks(this);
         hardwareService = new HardwareServiceImpl(mockReplicateRestClient);
     }
 
     @Test
-    public void testSetterAndGetter() {
+     void testSetterAndGetter() {
         Hardware hardware = new Hardware();
         hardware.setName("hardware test");
         hardware.setSku("sku test");
@@ -40,7 +40,7 @@ public class HardwareServiceImplTest {
     }
 
     @Test
-    public void testGet_shouldCallEndpointAndReturnHHardwareList() {
+     void testGet_shouldCallEndpointAndReturnHHardwareList() {
         Hardware[] hardwares = new Hardware[2];
         hardwares[0] = new Hardware("cpu", "cpu-sku");
         hardwares[1] = new Hardware("cpu-2", "cpu-sku-2");

@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 @Tag("unit-test")
-public class CollectionServiceImplTest {
+ class CollectionServiceImplTest {
 
     @Mock
     private ReplicateRestClient mockRestClient;
@@ -26,13 +26,13 @@ public class CollectionServiceImplTest {
      CollectionServiceImpl collectionService;
 
     @BeforeEach
-    public void setUp() {
+     void setUp() {
         MockitoAnnotations.openMocks(this);
         collectionService = new CollectionServiceImpl(mockRestClient);
     }
 
     @Test
-    public void testGet_ShouldCallCorrectEndpointAndReturnCollection(){
+     void testGet_ShouldCallCorrectEndpointAndReturnCollection(){
         CollectionModel collectionModel = new CollectionModel();
         collectionModel.setName("collection");
         collectionModel.setSlug("collection-slug");
@@ -51,7 +51,7 @@ public class CollectionServiceImplTest {
     }
 
     @Test
-    public void testGet_ShouldCallCorrectEndpointAndReturnCollectionList() {
+     void testGet_ShouldCallCorrectEndpointAndReturnCollectionList() {
         CollectionModel col1 = new CollectionModel();
         col1.setName("collection1");
         col1.setSlug("collection-slug1");

@@ -9,7 +9,7 @@ import java.util.Arrays;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @Tag("integration-test")
-public class HardwareActionsTest extends BaseReplicateTest {
+ class HardwareActionsTest extends BaseReplicateTest {
 
     @Test
     void hardwareListTest() {

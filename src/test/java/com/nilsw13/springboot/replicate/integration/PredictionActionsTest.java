@@ -16,10 +16,9 @@ import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Fail.fail;
 
 @Tag("integration-test")
-public class PredictionActionsTest extends BaseReplicateTest {
+ class PredictionActionsTest extends BaseReplicateTest {
 
     @Test
     void testGetPredictionList() {
@@ -27,7 +26,7 @@ public class PredictionActionsTest extends BaseReplicateTest {
 
         assertThat(predictionsList).isNotNull();
         assertThat(predictionsList.getResults()).isNotEmpty();
-        assertThat(predictionsList.getPrevious()).isEqualTo(null);
+        assertThat(predictionsList.getPrevious()).isNull();
         assertThat(predictionsList.getNext()).isNotNull();
         }
 

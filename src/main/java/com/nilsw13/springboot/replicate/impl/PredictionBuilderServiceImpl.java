@@ -15,7 +15,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
+import static java.util.stream.Collectors.toList;
 
 
 /**
@@ -162,7 +164,7 @@ public class PredictionBuilderServiceImpl implements PredictionBuilderService {
     public PredictionBuilderService webhookEventFilter(List<WebhookEvent> events) {
         this.webhookEventFilter = events.stream()
                 .map(WebhookEvent::getValue)
-                .collect(Collectors.toList());
+                .toList();
         return this;
     }
 

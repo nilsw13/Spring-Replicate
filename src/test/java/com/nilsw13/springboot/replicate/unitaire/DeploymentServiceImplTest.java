@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @Tag("unit-test")
-public class DeploymentServiceImplTest {
+ class DeploymentServiceImplTest {
 
     @Mock
     private ReplicateRestClient mockitoRestClient;
@@ -33,13 +33,13 @@ public class DeploymentServiceImplTest {
      DeploymentService deploymentService;
 
     @BeforeEach
-    public void setUp() {
+     void setUp() {
         MockitoAnnotations.openMocks(this);
         deploymentService = new DeploymentServiceImpl(mockitoRestClient);
     }
 
     @Test
-    public void testCreate_ShouldCallCorrectEndpointAndReturnCreatedDeployment(){
+     void testCreate_ShouldCallCorrectEndpointAndReturnCreatedDeployment(){
         DeploymentConfiguration configuration = new DeploymentConfiguration();
         configuration.setVersion("123456");
         configuration.setMinInstances(2);
@@ -72,7 +72,7 @@ public class DeploymentServiceImplTest {
     }
 
     @Test
-    public void testUpdate_ShouldCallCorrectEndpointAndReturnUpdatedDeployment() {
+     void testUpdate_ShouldCallCorrectEndpointAndReturnUpdatedDeployment() {
         DeploymentConfiguration configuration = new DeploymentConfiguration();
         configuration.setVersion("123456");
         configuration.setMinInstances(2);
@@ -120,7 +120,7 @@ public class DeploymentServiceImplTest {
     }
 
     @Test
-    public void testDelete_shouldCallCorrectEndpointAndReturnNull(){
+     void testDelete_shouldCallCorrectEndpointAndReturnNull(){
         DeploymentConfiguration configuration = new DeploymentConfiguration();
         configuration.setVersion("123456");
         configuration.setMinInstances(2);
@@ -159,7 +159,7 @@ public class DeploymentServiceImplTest {
     }
 
     @Test
-    public void testCreateDeploymentPrediction() throws InterruptedException {
+     void testCreateDeploymentPrediction() throws InterruptedException {
         // Configurer
         String owner = "nilsw13";
         String name = "test deployment create";
@@ -172,7 +172,7 @@ public class DeploymentServiceImplTest {
     }
 
     @Test
-    public void testGet_ShouldCallCorrectEndpointAndReturnDeployment(){
+     void testGet_ShouldCallCorrectEndpointAndReturnDeployment(){
         DeploymentConfiguration configuration = new DeploymentConfiguration();
         configuration.setMinInstances(2);
         configuration.setMaxInstances(6);
@@ -222,7 +222,7 @@ public class DeploymentServiceImplTest {
     }
 
     @Test
-    public void testList_ShouldCallCorrectEndpointAndReturnDeployment() {
+     void testList_ShouldCallCorrectEndpointAndReturnDeployment() {
         List<Deployment> list = new ArrayList<>();
 
         DeploymentConfiguration configuration1 = new DeploymentConfiguration();
