@@ -61,7 +61,7 @@ public class FileUtilsTest {
             FileUtils.fileToDataUrl(largeFile.toFile());
         });
 
-        assertTrue(exception.getMessage().contains("File size is too big"));
+        assertTrue(exception.getMessage().contains("File size exceeds maximum allowed size "));
     }
 
 
@@ -120,7 +120,7 @@ public class FileUtilsTest {
             FileUtils.imageToDataUrl(pngFile.toFile());
         });
 
-        assertTrue(exception.getMessage().contains("Image size is too big"));
+        assertTrue(exception.getMessage().contains("File size exceeds maximum allowed size"));
     }
 
     @Test
@@ -132,7 +132,7 @@ public class FileUtilsTest {
             FileUtils.imageToDataUrl(unknownFile.toFile());
         });
 
-        assertTrue(exception.getMessage().contains("unknowm image type"));
+        assertTrue(exception.getMessage().contains("Unsupported image format"));
     }
 
 
