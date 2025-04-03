@@ -41,7 +41,7 @@ jobs:
         run: mvn test -Punit-test -Dtest=!ReplicateAutoConfigTestWithoutApiKey
 
       - name: Run full verification
-        if: github.event_name != 'pull_request'
+        if: github.event_name == 'workflow_dispatch'
         env:
           REPLICATE_API_KEY: ${{ secrets.REPLICATE_API_KEY }}
         run: |
