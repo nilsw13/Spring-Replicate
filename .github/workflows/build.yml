@@ -2,9 +2,10 @@ name: Test Execution
 
 on:
   push:
-    branches: [ master, main ]
-    paths-ignore:
-      - '**.md'
+    branches: [main, master]
+    paths-ignore: ['**.md']
+  pull_request:
+    branches: [main, master]
   workflow_dispatch:
 
 jobs:
@@ -13,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -31,31 +32,40 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
-      - name: Run tests without API key
-        if: github.event_name == 'push'
+      - name: Run security test
         run: mvn test -Punit-test -Dtest=ReplicateAutoConfigTestWithoutApiKey
 
-
-      - name: Run remaining unit tests
-        if: github.event_name == 'push'
+      - name: Run core unit tests
         env:
-          REPLICATE_API_KEY: ${{ secrets.REPLICATE_API_KEY }}
+          REPLICATE_API_KEY: ${{ github.event_name == 'pull_request' && 'DUMMY_VALUE' || secrets.REPLICATE_API_KEY }}
         run: mvn test -Punit-test -Dtest=!ReplicateAutoConfigTestWithoutApiKey
 
-      - name: Run all tests except ReplicateAutoConfigTestWithoutApiKey
-        if: github.event_name == 'workflow_dispatch'
+      - name: Run full verification
+        if: github.event_name != 'pull_request'
         env:
           REPLICATE_API_KEY: ${{ secrets.REPLICATE_API_KEY }}
-        run: mvn verify -Dtest=!ReplicateAutoConfigTestWithoutApiKey -DfailIfNoTests=false jacoco:report
+        run: |
+          mvn verify -Pintegration-test \
+          -Dtest=!ReplicateAutoConfigTestWithoutApiKey \
+          -Dit.test=!ReplicateAutoConfigTestWithoutApiKey \
+          jacoco:report
 
-      - name: SonarCloud Scan
+      - name: SonarCloud Analysis
         if: github.event_name == 'workflow_dispatch' && success()
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: >
-          mvn sonar:sonar
-          -Dsonar.organization=nilsw13
-          -Dsonar.host.url=https://sonarcloud.io
-          -Dsonar.projectKey=nilsw13_Spring-Boot-Replicate
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mvn sonar:sonar \
+          -Dsonar.organization=nilsw13 \
+          -Dsonar.host.url=https://sonarcloud.io \
+          -Dsonar.projectKey=nilsw13_Spring-Boot-Replicate \
           -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
+
+      - name: Validate PR approvers
+        if: github.event_name == 'pull_request'
+        run: |
+          if [[ "${{ github.event.pull_request.user.login }}" != "votre-username-github" ]]; then
+            echo "Seul le propriétaire peut merger les PR"
+            exit 1
+          fi
