@@ -56,7 +56,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @EnableConfigurationProperties(ReplicateProperties.class)
-@ConditionalOnProperty(prefix = "replicate", name = "api-key")
+@ConditionalOnProperty(prefix = "replicate", name = "api-key",  matchIfMissing = false)
 public class ReplicateAutoConfig {
 
 

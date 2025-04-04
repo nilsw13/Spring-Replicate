@@ -33,8 +33,6 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
 
       - name: Run security test
-        env:
-          REPLICATE_API_KEY: ${{ github.event_name == 'pull_request' && 'DUMMY_VALUE' || secrets.REPLICATE_API_KEY }}
         run: mvn test -Punit-test -Dtest=ReplicateAutoConfigWithoutApiKeyTest
 
       - name: Run core unit tests
