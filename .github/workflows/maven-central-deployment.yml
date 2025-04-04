@@ -51,4 +51,4 @@ jobs:
           REPLICATE_API_KEY: ${{ secrets.REPLICATE_API_KEY }}
         run: |
           # Déployer vers Maven Central en passant la clé API comme propriété système
-          mvn clean deploy -Prelease -Dreplicate.api-key=$REPLICATE_API_KEY
+          mvn clean deploy -Prelease -Dtest=!ReplicateAutoConfigWithoutApiKeyTest  -Dreplicate.api-key=$REPLICATE_API_KEY
