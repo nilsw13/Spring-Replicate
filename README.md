@@ -34,46 +34,43 @@ Add the dependency to your `pom.xml` if you're using Maven:
 
 ```xml
 <dependency>
-    <groupId>com.nilsw13</groupId>
-    <artifactId>spring-replicate</artifactId>
+    <groupId>io.github.nilsw13</groupId>
+    <artifactId>spring-boot-replicate</artifactId>
     <version>1.0.0</version>
 </dependency>
 ```
 
 ## ⚡ Quick Start
-- 1 **Configure your Replicate API token in application.properties**
+- 1 **Configure your Replicate API token in application.properties otherwise you won't be able to use the library this is very important**
 ```properties
-    replicate.api.token=your_replicate_api_token_here
+    replicate.api-token=your_replicate_api_token_here
 ```
 - 2 **Usage Examples**
 ```java
-// Run a Prediction
-private final Replicate replicate;
 
-public YourClassName(Replicate replicate) {
-    this.replicate = replicate;
-}
-public void generateImage() {
-    Prediction prediction = replicate.predictions()
-            .create("stability-ai/sdxl")
-            .input("prompt", "A cosmic landscape with vibrant nebulae")
-            .input("negative_prompt", "blurry, distorted")
-            .execute();
+@RestController
+public class DemoController {
+    private final Replicate replicate;
 
-    System.out.println("Prediction ID: " + prediction.getId());
-    System.out.println("Status: " + prediction.getStatus());
-    System.out.println("Output: " + prediction.getOutput());
+    public DemoController(Replicate replicate) {
+        this.replicate = replicate;
+    }
+
+    @GetMapping("/models")
+    public ModelList listModels() {
+        return replicate.models().list();
+    }
+
+    @GetMapping("/account")
+    public Account get() {
+        return replicate.account().get();
+    }
 }
+
 ```
 
 
-```java
-    // List models
-    ModelList models = replicate.models().list();
-    models.getResults().forEach(model -> {
-    System.out.println(model.getOwner() + "/" + model.getName());
-    });
-```
+
 
 
 
