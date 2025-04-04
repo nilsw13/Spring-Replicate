@@ -53,7 +53,7 @@ jobs:
       - name: Update version if specified
         if: ${{ inputs.version != '' }}
         run: |
-          echo "Updating version to": ${{ inputs.version }}"
+          echo "Updating version to": "${{ inputs.version }}"
           mvn versions:set -DnewVersion=${{ inputs.version }} -DgenerateBackupPoms=false
 
       - name: Deploy to Maven Central with API key
