@@ -15,4 +15,8 @@ public abstract class BaseReplicateTest {
 
     @Autowired
     public Replicate replicate;
+
+
+
+
 }

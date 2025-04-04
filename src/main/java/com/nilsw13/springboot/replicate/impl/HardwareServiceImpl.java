@@ -4,6 +4,7 @@ import com.nilsw13.springboot.replicate.responsetype.hardware.Hardware;
 import com.nilsw13.springboot.replicate.api.ReplicateRestClient;
 import com.nilsw13.springboot.replicate.config.ReplicateProperties;
 import com.nilsw13.springboot.replicate.service.HardwareService;
+import org.springframework.stereotype.Service;
 
 
 /**
@@ -25,6 +26,7 @@ import com.nilsw13.springboot.replicate.service.HardwareService;
  * @see Hardware
  * @see ReplicateRestClient
  */
+@Service
 public class HardwareServiceImpl implements HardwareService {
 
     private final ReplicateRestClient replicateRestClient;

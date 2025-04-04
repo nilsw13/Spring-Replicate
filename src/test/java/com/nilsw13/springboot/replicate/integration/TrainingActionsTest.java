@@ -20,6 +20,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
         Training training = replicate.trainings().get(trainingId);
         System.out.println(training);
         assertThat(training.getUrls()).isNotNull();
+
     }
 
     @Test
