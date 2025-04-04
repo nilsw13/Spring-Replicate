@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
     @Test
      void shouldNotCreateBeansWhenApiKeyIsMissing() {
         contextRunner
-                .withPropertyValues("replicate.api.key")
+                .withPropertyValues("replicate.api-key")
                 .run(context -> {
                     assertThat(context).doesNotHaveBean(ReplicateRestClient.class);
                     assertThat(context).doesNotHaveBean(Replicate.class);
