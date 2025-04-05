@@ -175,7 +175,7 @@ This exception preserves the complete context of the failed API call, making it 
 
 ## Acknowledgements
  This project was inspired by [halilcosdu/laravel-replicate](https://github.com/halilcosdu/laravel-replicate),
- a Laravel client for the Replicate API in the PHP ecosystem. I appreciate Halil Cosdu's work, which provided a valuable reference for the architecture and feature set of this Spring Boot implementation.
+ a Laravel client for the Replicate API in the PHP ecosystem. I appreciate Halil Cosdu's work, which provided a valuable reference for the architecture and feature set of this Spring Boot package.
 
 
 ## License
