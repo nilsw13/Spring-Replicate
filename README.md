@@ -8,14 +8,14 @@
 The spring-boot-replicate package is a  Spring Boot client for the Replicate AI platform. Built specifically for the Java ecosystem, it leverages Spring's powerful dependency injection and autoconfiguration capabilities to seamlessly integrate Replicate's AI services into your Spring Boot applications.
 This client offers a comprehensive set of interfaces to interact with all major Replicate API endpoints through a clean, type-safe Java API. The client provides specialized services for each Replicate resource:
 
--**Account management**: Access account information and settings
--**Collections**: Discover and explore curated model collections
--**Deployments**: Set up and maintain production API endpoints for models
--**Hardware**: View available compute resources for running models
--**Models & Versions**: Create, retrieve, and manage AI models and their versions
--**Predictions**: Execute model inferences and process results
--**Training**: Fine-tune models with custom datasets
--**Webhooks**: Configure webhooks for event notifications
+- **Account management**: Access account information and settings
+- **Collections**: Discover and explore curated model collections
+- **Deployments**: Set up and maintain production API endpoints for models
+- **Hardware**: View available compute resources for running models
+- **Models & Versions**: Create, retrieve, and manage AI models and their versions
+- **Predictions**: Execute model inferences and process results
+- **Training**: Fine-tune models with custom datasets
+- **Webhooks**: Configure webhooks for event notifications
 
 ⚠️ IMPORTANT: The package requires proper configuration through Spring's application properties system. The client will only activate when the replicate.api-token property is correctly set in your application.properties or application.yml file. Without this configuration, the client will not initialize, and you won't be able to interact with the Replicate API.
 
@@ -112,7 +112,7 @@ Reference: https://replicate.com/docs/reference/http
 
 
 
-## Usage Examples**
+## Usage Examples
 ```java
 
 @RestController
