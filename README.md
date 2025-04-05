@@ -8,26 +8,29 @@
 The spring-boot-replicate package is a  Spring Boot client for the Replicate AI platform. Built specifically for the Java ecosystem, it leverages Spring's powerful dependency injection and autoconfiguration capabilities to seamlessly integrate Replicate's AI services into your Spring Boot applications.
 This client offers a comprehensive set of interfaces to interact with all major Replicate API endpoints through a clean, type-safe Java API. The client provides specialized services for each Replicate resource:
 
-Account management: Access account information and settings
-Collections: Discover and explore curated model collections
-Deployments: Set up and maintain production API endpoints for models
-Hardware: View available compute resources for running models
-Models & Versions: Create, retrieve, and manage AI models and their versions
-Predictions: Execute model inferences and process results
-Training: Fine-tune models with custom datasets
-Webhooks: Configure webhooks for event notifications
+-**Account management**: Access account information and settings
+-**Collections**: Discover and explore curated model collections
+-**Deployments**: Set up and maintain production API endpoints for models
+-**Hardware**: View available compute resources for running models
+-**Models & Versions**: Create, retrieve, and manage AI models and their versions
+-**Predictions**: Execute model inferences and process results
+-**Training**: Fine-tune models with custom datasets
+-**Webhooks**: Configure webhooks for event notifications
 
 ⚠️ IMPORTANT: The package requires proper configuration through Spring's application properties system. The client will only activate when the replicate.api-token property is correctly set in your application.properties or application.yml file. Without this configuration, the client will not initialize, and you won't be able to interact with the Replicate API.
-Features
 
-🏃‍♂️ Run Models: Execute predictions with any model available on Replicate
-🤖 Model Management: Create, list, update, and delete models
-🔄 Versions: Get information about model versions and their capabilities
-📊 Deployments: Create and manage model deployments for production use
-🎓 Training: Fine-tune models with your own data
-📚 Collections: Browse curated model collections
-🪝 Webhooks: Configure webhooks for event notifications
----
+
+## Features
+
+- 🏃‍♂️ **Run Models**: Execute predictions with any model available on Replicate
+- 🤖 **Model Management**: Create, list, update, and delete models
+- 🔄 **Versions**: Get information about model versions and their capabilities
+- 📊 **Deployments**: Create and manage model deployments for production use
+- 🎓 **Training**: Fine-tune models with your own data
+- 📚 **Collections**: Browse curated model collections
+- 🪝 **Webhooks**: Configure webhooks for event notifications
+
+
 
 
 ## Installation
@@ -44,7 +47,10 @@ Add the dependency to your `pom.xml` if you're using Maven:
 
 ## ⚡ Quick Start
 
-## ⚠️ MANDATORY CONFIGURATION: The client requires that you configure your Replicate API token in application.properties or application.yml. Without this configuration, the library will not activate:
+
+## Configuration
+⚠️ MANDATORY CONFIGURATION:
+The client requires that you configure your Replicate API token in application.properties or application.yml. Without this configuration, the library will not activate:
 ```properties
 # Required - The client will not function without this property
 replicate.api-token=your_replicate_api_token_here
