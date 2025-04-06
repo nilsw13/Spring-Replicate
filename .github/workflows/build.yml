@@ -3,7 +3,7 @@ name: Test Execution
 on:
   push:
     branches: [main, master]
-    paths-ignore: ['**.md', '**.yml', '**.xml']
+    paths-ignore: ['**.md', '**.yml', '**.xml', '**.png']
   pull_request:
     branches: [main, master]
   workflow_dispatch:
