@@ -1,7 +1,9 @@
 
 <div align="center">
   <img src=".github/images/spring-replicate.png" alt="Project Banner" width="100%"/>
-</div># Spring Boot Replicate Client 
+</div>
+
+# Spring Boot Replicate Client 
 
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
