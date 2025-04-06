@@ -45,6 +45,12 @@ Add the dependency to your `pom.xml` if you're using Maven:
 </dependency>
 ```
 
+
+If you're using Gradle : 
+```groovy
+    implementation 'io.github.nilsw13:spring-boot-replicate:1.0.0'
+```
+
 ## ⚡ Quick Start
 
 
